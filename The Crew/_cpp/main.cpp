@@ -6,8 +6,9 @@
 
 #include "Config.h"
 #include "Helper.h"
-#include "OriginalMain.h"
-#include "DeepSeaMain.h"
+
+extern void ExecuteOriginal();
+extern void ExecuteDeepSea();
 
 enum class ProgrammType {
 	ORIGINAL = 1,

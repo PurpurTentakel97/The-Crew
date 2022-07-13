@@ -5,8 +5,8 @@
     <ClInclude Include="_hed\Helper.h" />
     <ClInclude Include="Command\hed\Token.h" />
     <ClInclude Include="Command\hed\Command.h" />
-    <ClInclude Include="DeepSea\hed\DeepSeaMain.h" />
-    <ClInclude Include="Original\hed\OriginalMain.h" />
+    <ClInclude Include="DeepSea\hed\DSCards.h" />
+    <ClInclude Include="DeepSea\hed\DSConfig.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="_cpp\Config.cpp" />
@@ -14,7 +14,12 @@
     <ClCompile Include="_cpp\Helper.cpp" />
     <ClCompile Include="Command\cpp\Token.cpp" />
     <ClCompile Include="Command\cpp\Command.cpp" />
-    <ClCompile Include="DeepSea\cpp\DeepSeaMain.cpp" />
-    <ClCompile Include="Original\cpp\OriginalMain.cpp" />
+    <ClCompile Include="DeepSea\cpp\DSMain.cpp" />
+    <ClCompile Include="Original\cpp\OMain.cpp" />
+    <ClCompile Include="DeepSea\cpp\DSParser.cpp" />
+    <ClCompile Include="DeepSea\cpp\DSCards.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="DeepSea\DeepSea.cnfg" />
   </ItemGroup>
 </Project>

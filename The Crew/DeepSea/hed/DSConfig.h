@@ -5,4 +5,8 @@
 
 #pragma once
 
-void ExecuteOriginal();
+enum class PlayerCount {
+	THREE = 3,
+	FOUR,
+	FIVE
+};
