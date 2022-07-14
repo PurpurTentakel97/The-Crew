@@ -8,6 +8,7 @@
 
 enum class Token {
 	COMMAND, // !commands
+	PLAYER_COUNT, // !playercount
 	QUIT, // !quit
 	INVALID,
 };

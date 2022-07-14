@@ -1,11 +1,12 @@
 //
 // Purpur Tentakel
-// 14.07.2022
+// 12.07.2022
 //
 
-#include "DSConfig.h"
-#include "DSCards.h"
 #include "Helper.h"
+#include "DSCards.h"
+#include "Config.h"
+#include "DSConfig.h"
 #include <vector>
 #include <windows.h>
 
@@ -23,13 +24,15 @@ void ExecuteDeepSea() {
 		while (TryGetCardSet(difficultiyCount, selection)) {
 			if (reloaded) {
 				Print("fatal error setting card set");
-				Sleep(2500);
+				Sleep(5000);
 				exit(0);
 			}
 			Print("\tno selection left -> reload cards");
 			SetCards(ParseCards());
 			reloaded = true;
 		}
+
 	}
-	
+
+	PrintCardTable();
 }

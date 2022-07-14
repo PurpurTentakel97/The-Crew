@@ -9,6 +9,9 @@ const Token LexToken(const std::string& command) {
 	if (command == "!commands") {
 		return Token::COMMAND;
 	}
+	else if (command == "!playercount") {
+		return Token::PLAYER_COUNT;
+	}
 	else if (command == "!quit") {
 		return Token::QUIT;
 	}

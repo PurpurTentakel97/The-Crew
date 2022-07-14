@@ -9,5 +9,8 @@
 bool TryGetStringInput(std::string& input);
 bool TryGetIntInput(int& input);
 
+int GetRandomInteger(int min, int max);
+
 void Print(const std::string& message, bool newLine = true);
 void Print(int number, bool newLine = true);
+void Print(char character, bool newLine = true);

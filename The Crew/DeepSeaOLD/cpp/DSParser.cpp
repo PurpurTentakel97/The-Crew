@@ -24,11 +24,11 @@ std::vector<Card> ParseCards() {
 
 		std::array<int, 3> difficulties;
 		for (int i = 0; i < 3; ++i) {
-			end = entry.find(delimiter, start);
+			end = entry.find(delimiter,start);
 			difficulties[i] = std::stoi(entry.substr(start, end - start));
 			start = end + 1;
 		}
-
+		
 		std::array<std::string, 2> text;
 		for (int i = 0; i < 2;++i) {
 			end = entry.find(delimiter, start);
@@ -36,7 +36,7 @@ std::vector<Card> ParseCards() {
 			start = end + 1;
 		}
 
-		cards.emplace_back(difficulties, text);
+		cards.emplace_back(difficulties,text);
 	}
 	return cards;
 }

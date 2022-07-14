@@ -1,26 +1,27 @@
 //
 // Purpur Tentakel
-// 14.07.2022
+// 12.07.2022
 //
 
 #pragma once
-#include "Config.h"
 #include <string>
 #include <vector>
+#include <array>
+#include "Config.h"
 
 class Card {
 private:
-	int threePlayerDifficulty;
-	int fourPlayerDifficulty;
-	int fivePlayerDifficulty;
-	std::string desciption;
-	std::string extraText;
+	const int threePlayerDifficulty;
+	const int fourPlayerDifficulty;
+	const int fivePlayerDifficulty;
+	const std::string desciption;
+	const std::string extraText;
 public:
 	Card(const std::array<int, 3>& difficulties, const std::array<std::string, 2>& text);
-	int GetDificulty() const;
+	int GetDificulty(PlayerCount playerCount) const;
 	std::string GetDesciption() const;
 	std::string GetExtraText() const;
-	std::string ToString() const;
+	std::string ToString(PlayerCount playerCount) const;
 };
 
 void PrintCardTable();

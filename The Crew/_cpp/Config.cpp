@@ -4,22 +4,41 @@
 //
 
 #include "Config.h"
+#include "Helper.h"
 
-static int maxPlayerCount = 5;
-static int minPlayerCount = 3;
-static int playerCount = minPlayerCount;
+static PlayerCount playerCount;
 
-const int GetPlayerCount() {
+PlayerCount GetPlayerCount() {
 	return playerCount;
 }
-void SetPlayerCount(const int count) {
-	if (count < minPlayerCount) {
-		playerCount = minPlayerCount;
+bool SetPlayerCount(int input) {
+	switch (input) {
+	case (3): {
+		playerCount = PlayerCount::THREE;
+		break;
 	}
-	else if (count > maxPlayerCount) {
-		playerCount = maxPlayerCount;
+	case (4): {
+		playerCount = PlayerCount::FOUR;
+		break;
 	}
-	else {
-		playerCount = count;
+	case(5): {
+		playerCount = PlayerCount::FIVE;
+		break;
+	}
+	default:
+	{
+		Print("\tbad player count");
+		return true;
+	}
+	}
+	return false;
+}
+
+void SetPlayerCountWithInput() {
+	int input = 0;
+	Print("enter player count (3-5)");
+	while (TryGetIntInput(input)) {}
+	while (SetPlayerCount(input)) {
+		while (TryGetIntInput(input)) {}
 	}
 }

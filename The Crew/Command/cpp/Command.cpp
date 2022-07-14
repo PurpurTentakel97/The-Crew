@@ -6,6 +6,7 @@
 #include "Command.h"
 #include "Token.h"
 #include "Helper.h"
+#include "Config.h"
 #include <vector>
 
 static char commandPrefix = '!';
@@ -20,6 +21,11 @@ void ExecuteCommand(const std::string& command) {
 	switch (token) {
 		case (Token::COMMAND): {
 			PrintCommands();
+			break;
+		}
+		case (Token::PLAYER_COUNT): {
+			SetPlayerCountWithInput();
+			Print("\tdone");
 			break;
 		}
 		case (Token::QUIT): {
@@ -38,7 +44,7 @@ void ExecuteCommand(const std::string& command) {
 }
 
 static void PrintCommands() {
-	const std::vector<std::string> commands = { "!quit","!commands" };
+	const std::vector<std::string> commands = { "!playercount","!quit","!commands"};
 	for (std::string command : commands) {
 		Print("\t" + command);
 	}

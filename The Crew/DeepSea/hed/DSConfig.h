@@ -1,12 +1,14 @@
 //
 // Purpur Tentakel
-// 12.07.2022
+// 14.07.2022
 //
 
 #pragma once
+#include "DSCards.h"
+#include <vector>
 
-enum class PlayerCount {
-	THREE = 3,
-	FOUR,
-	FIVE
-};
+void SetDSConfig();
+
+void SetCards(std::vector<Card> newCards);
+std::vector<Card>& GetCards();
+

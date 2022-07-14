@@ -7,6 +7,7 @@
 #include "Command.h"
 #include <iostream>
 #include <stdexcept>
+#include <random>
 
 static bool CommandCheck(std::string& command);
 static std::string ReadInput();
@@ -33,14 +34,14 @@ bool TryGetIntInput(int& input) {
 		input = std::stoi(localInput);
 	}
 	catch (std::invalid_argument ex) {
-		Print("bad number");
+		Print("\tbad number");
 		return true;
 	}
 	catch (std::out_of_range ex) {
-		Print("bad number");
+		Print("\tbad number");
 		return true;
 	}
-	
+
 	return false;
 }
 
@@ -51,6 +52,7 @@ static bool CommandCheck(std::string& command) {
 	}
 	return false;
 }
+
 
 
 // Output
@@ -68,10 +70,25 @@ void Print(const int number, bool newLine) {
 	}
 	std::cout << number;
 }
+void Print(const char character, bool newLine) {
+	if (newLine) {
+		std::cout << character << std::endl;
+		return;
+	}
+	std::cout << character;
+}
 
 
 // Helper
 static void StripString(std::string& input) {
 	input = input.erase(0, input.find_first_not_of(' '));
 	input = input.erase(input.find_last_not_of(' ') + 1, input.size() - 1);
+}
+
+int GetRandomInteger(const int min, const int max) {
+	std::random_device rd;
+	std::mt19937 gen(rd());
+	std::uniform_int_distribution<> distr(min, max - 1);
+
+	return distr(gen);
 }

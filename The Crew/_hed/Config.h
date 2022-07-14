@@ -5,5 +5,12 @@
 
 #pragma once
 
-const int GetPlayerCount();
-void SetPlayerCount(int cout);
+enum class PlayerCount {
+	THREE = 3,
+	FOUR,
+	FIVE
+};
+
+PlayerCount GetPlayerCount();
+bool SetPlayerCount(int input);
+void SetPlayerCountWithInput();

@@ -29,9 +29,10 @@
   <ItemGroup>
     <ClCompile Include="Command\cpp\Command.cpp" />
     <ClCompile Include="Command\cpp\Token.cpp" />
+    <ClCompile Include="DeepSea\cpp\DSCards.cpp" />
+    <ClCompile Include="DeepSea\cpp\DSConfig.cpp" />
     <ClCompile Include="DeepSea\cpp\DSMain.cpp" />
     <ClCompile Include="DeepSea\cpp\DSParser.cpp" />
-    <ClCompile Include="DeepSea\cpp\DSCards.cpp" />
     <ClCompile Include="Original\cpp\OMain.cpp" />
     <ClCompile Include="_cpp\Config.cpp" />
     <ClCompile Include="_cpp\Helper.cpp" />
