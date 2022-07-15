@@ -84,11 +84,3 @@ static void StripString(std::string& input) {
 	input = input.erase(0, input.find_first_not_of(' '));
 	input = input.erase(input.find_last_not_of(' ') + 1, input.size() - 1);
 }
-
-int GetRandomInteger(const int min, const int max) {
-	std::random_device rd;
-	std::mt19937 gen(rd());
-	std::uniform_int_distribution<> distr(min, max - 1);
-
-	return distr(gen);
-}

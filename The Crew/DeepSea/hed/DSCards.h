@@ -23,5 +23,6 @@ public:
 	std::string ToString() const;
 };
 
-void PrintCardTable();
+void PrintCardTable(const std::vector<Card>& cards);
 bool TryGetCardSet(int difficultyCount, std::vector<Card>& selection);
+void RemoveCardsFromPool(const std::vector<Card>& selection);

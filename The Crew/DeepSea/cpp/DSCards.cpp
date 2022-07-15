@@ -49,7 +49,7 @@ std::string Card::ToString() const {
 
 
 // Free Print Hed
-static std::array<int, 4> GetSpacer();
+static std::array<int, 4> GetSpacer(const std::vector<Card>& cards);
 static void PrintHeadline(const std::array<int, 4>& spacer);
 static void PrintCard(const Card& card, const std::array<int, 4>& spacer, int count);
 static void PrintExtraLine(const Card& card, const std::array<int, 4>& spacer);
@@ -57,9 +57,8 @@ static void PrintLine(const std::array<int, 4>& spacer);
 static void PrintCharXTimes(int x, char s);
 
 // Free Print
-void PrintCardTable() {
-	const std::vector<Card>& cards = GetCards();
-	const std::array<int, 4> spacer = GetSpacer();
+void PrintCardTable(const std::vector<Card>& cards) {
+	const std::array<int, 4> spacer = GetSpacer(cards);
 	PrintHeadline(spacer);
 
 	for (int i = 0; i < cards.size(); ++i) {
@@ -71,8 +70,7 @@ void PrintCardTable() {
 		PrintLine(spacer);
 	}
 }
-std::array<int, 4> GetSpacer() {
-	const std::vector<Card>& cards = GetCards();
+std::array<int, 4> GetSpacer(const std::vector<Card>& cards) {
 	int columnSpacing = 2;
 	size_t numberWith = std::to_string(cards.size()).size() > hedNumber.size()
 		? std::to_string(cards.size()).size() : hedNumber.size();
@@ -147,6 +145,7 @@ void PrintCharXTimes(const int x, const char s) {
 	}
 }
 
+
 // Free Cardset Hed
 static int GetTotalDifficultyCount();
 // Free Cardset
@@ -160,17 +159,48 @@ bool TryGetCardSet(const int difficultyCount, std::vector<Card>& selection) {
 		return false;
 	}
 	std::vector<Card> cards = GetCards();
-	std::shuffle(std::begin(cards), std::end(cards), std::default_random_engine());
-	for (Card card : cards) {
-		Print(card.ToString());
+	for (int i = 0; i < 10; ++i) {
+		selection.clear();
+		std::random_device rd;
+		std::default_random_engine rng(rd());
+		shuffle(cards.begin(), cards.end(), rng);
+		int count = 0;
+		for (const Card& card : cards) {
+			if (count + card.GetDificulty() <= difficultyCount) {
+				count += card.GetDificulty();
+				selection.push_back(card);
+			}
+			if (count >= difficultyCount) {
+				break;
+			}
+		}
+		if (count == difficultyCount) {
+			return false;
+		}
 	}
-	return false;
-}
 
+	return true;
+}
 static int GetTotalDifficultyCount() {
 	int count = 0;
 	for (Card card : GetCards()) {
 		count += card.GetDificulty();
 	}
 	return count;
+}
+
+
+// Free Remove Cards Hed
+
+// Free Remove Cards
+void RemoveCardsFromPool(const std::vector<Card>& selection) {
+	std::vector<Card>& cards = GetCards();
+	for (int i = 0; i < selection.size(); ++i) {
+		for (int j = 0; j < cards.size(); ++j) {
+			if (selection[i].GetDesciption() == cards[j].GetDesciption()) {
+				cards.erase(cards.begin()+j);
+				break;
+			}
+		}
+	}
 }

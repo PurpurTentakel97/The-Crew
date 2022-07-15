@@ -11,6 +11,12 @@
 
 extern std::vector<Card> ParseCards();
 
+bool IsValidSelection() {
+	Print("valid selection? (1 -> yes)");
+	std::string input;
+	while(TryGetStringInput(input)){}
+	return input == "1";
+}
 
 void ExecuteDeepSea() {
 	SetDSConfig();
@@ -30,6 +36,11 @@ void ExecuteDeepSea() {
 			SetCards(ParseCards());
 			reloaded = true;
 		}
+		PrintCardTable(selection);
+		if (!IsValidSelection()) {
+			Print("\tretry");
+			continue;
+		}
+		RemoveCardsFromPool(selection);
 	}
-	
 }
