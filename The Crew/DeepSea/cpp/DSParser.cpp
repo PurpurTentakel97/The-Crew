@@ -11,7 +11,7 @@
 #include "Helper.h"
 
 const static char delimiter = ';';
-const static std::string fileName = "DeepSea/DeepSea.cnfg";
+const static std::string fileName = "Config/DeepSea/DeepSeaDefault.cnfg";
 static std::vector<std::string> LoadConfig();
 
 std::vector<Card> ParseCards() {
