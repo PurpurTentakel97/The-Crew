@@ -21,6 +21,6 @@
     <ClCompile Include="DeepSea\cpp\DSParser.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="DeepSea\DeepSea.cnfg" />
+    <None Include="Config\DeepSea\DeepSea.cnfg" />
   </ItemGroup>
 </Project>

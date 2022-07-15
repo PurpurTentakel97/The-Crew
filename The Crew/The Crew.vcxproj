@@ -39,7 +39,7 @@
     <ClCompile Include="_cpp\main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="DeepSea\DeepSea.cnfg" />
+    <None Include="Config\DeepSea\DeepSea.cnfg" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

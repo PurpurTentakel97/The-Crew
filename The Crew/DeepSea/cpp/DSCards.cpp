@@ -54,7 +54,7 @@ static void PrintHeadline(const std::array<int, 4>& spacer);
 static void PrintCard(const Card& card, const std::array<int, 4>& spacer, int count);
 static void PrintExtraLine(const Card& card, const std::array<int, 4>& spacer);
 static void PrintLine(const std::array<int, 4>& spacer);
-static void PrintCharXTimes(int x, char s);
+static std::string GetCharXTimes(int x, char s);
 
 // Free Print
 void PrintCardTable(const std::vector<Card>& cards) {
@@ -99,50 +99,52 @@ void PrintHeadline(const std::array<int, 4>& spacer) {
 	PrintLine(spacer);
 
 	std::array<std::string, 4> headlines = { "",hedNumber,hedDifficulty,hedTask };
+	std::string toPrint;
 	for (int i = 1; i < spacer.size(); ++i) {
-		Print('|', false);
 		int space = static_cast<int>((spacer[i] - headlines[i].size()) / 2 + spacer[0]);
-		PrintCharXTimes(space, ' ');
-		Print(headlines[i], false);
-		PrintCharXTimes(space, ' ');
+		toPrint += '|' + GetCharXTimes(space, ' ') + headlines[i] + GetCharXTimes(space, ' ');
+		if (spacer[i] % 2 == 0) {
+			toPrint += ' ';
+		}
 	}
-	Print('|');
+	toPrint += '|';
+	Print(toPrint);
 
 	PrintLine(spacer);
 	PrintLine(spacer);
 }
 void PrintCard(const Card& card, const std::array<int, 4>& spacer, const int count) {
 	std::array<std::string, 4> entries = { "",std::to_string(count), std::to_string(card.GetDificulty()),"- " + card.GetDesciption() };
+	std::string toPrint;
 	for (int i = 1; i < spacer.size(); ++i) {
-		Print('|', false);
-		PrintCharXTimes(spacer[0], ' ');
-		Print(entries[i], false);
-		PrintCharXTimes(static_cast<int>(spacer[i] - entries[i].size() + spacer[0]), ' ');
+		toPrint += '|' + GetCharXTimes(spacer[0], ' ') + entries[i] + 
+			GetCharXTimes(static_cast<int>(spacer[i] - entries[i].size() + spacer[0]), ' ');
 	}
-	Print('|');
+	toPrint += '|';
+	Print(toPrint);
 }
 void PrintExtraLine(const Card& card, const std::array<int, 4>& spacer) {
 	std::array<std::string, 4> entries = { "","","","    - " + card.GetExtraText() };
+	std::string toPrint;
 	for (int i = 1; i < spacer.size(); ++i) {
-		Print('|', false);
-		PrintCharXTimes(spacer[0], ' ');
-		Print(entries[i], false);
-		PrintCharXTimes(static_cast<int>(spacer[i] - entries[i].size() + spacer[0]), ' ');
+		toPrint += '|' + GetCharXTimes(spacer[0], ' ') + entries[i] + 
+			GetCharXTimes(static_cast<int>(spacer[i] - entries[i].size() + spacer[0]), ' ');
 	}
-	Print('|');
+	toPrint += '|';
+	Print(toPrint);
 
 }
 void PrintLine(const std::array<int, 4>& spacer) {
+	std::string toPrint;
 	for (int i = 1; i < spacer.size(); ++i) {
-		Print('+', false);
-		PrintCharXTimes(2 * spacer[0] + spacer[i], '-');
+		toPrint += '+' + GetCharXTimes(2 * spacer[0] + spacer[i], '-');
 	}
-	Print('+');
+	toPrint += '+';
+	Print(toPrint);
 }
-void PrintCharXTimes(const int x, const char s) {
-	for (int i = 0; i < x; ++i) {
-		Print(s, false);
-	}
+std::string GetCharXTimes(const int x, const char s) {
+	std::string toReturn(x,s);
+	return toReturn;
 }
 
 
