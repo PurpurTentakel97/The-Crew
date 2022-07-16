@@ -7,14 +7,14 @@
 #include "Token.h"
 #include "Helper.h"
 #include "Config.h"
-#include <vector>
+#include <array>
 
 static char commandPrefix = '!';
 
 static void PrintCommands();
 
 [[nodiscard]] bool HasCommandPrefix(const std::string& command) {
-	return command[0] == commandPrefix;
+	return !command.empty() && command[0] == commandPrefix;
 }
 void ExecuteCommand(const std::string& command) {
 	const Token token = LexToken(command);
@@ -30,7 +30,7 @@ void ExecuteCommand(const std::string& command) {
 			break;
 		}
 		case (Token::QUIT): {
-			exit(0);
+			std::exit(EXIT_SUCCESS);
 			break;
 		}
 		case (Token::INVALID): {
@@ -45,8 +45,8 @@ void ExecuteCommand(const std::string& command) {
 }
 
 void PrintCommands() {
-	const std::vector<std::string> commands = { "!playercount","!quit","!commands"};
-	for (std::string command : commands) {
+	constexpr std::array commands = { "!playercount", "!quit", "!commands"};
+	for (const std::string& command : commands) {
 		Print("\t" + command);
 	}
 }
