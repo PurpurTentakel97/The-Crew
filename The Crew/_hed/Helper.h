@@ -6,8 +6,8 @@
 #pragma once
 #include <string>
 
-bool TryGetStringInput(std::string& input);
-bool TryGetIntInput(int& input);
+[[nodiscard]] bool TryGetStringInput(std::string& input);
+[[nodiscard]] bool TryGetIntInput(int& input);
 
 void Print(const std::string& message, bool newLine = true);
 void Print(int number, bool newLine = true);

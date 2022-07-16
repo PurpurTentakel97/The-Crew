@@ -7,15 +7,19 @@
 #include "Token.h"
 #include "Helper.h"
 #include "Config.h"
-#include <vector>
+#include <array>
+#include <cstdlib>
+#include <iostream>
+#include <format>
 
-static char commandPrefix = '!';
+static constexpr char commandPrefix = '!';
 
 static void PrintCommands();
 
-bool HasCommandPrefix(const std::string& command) {
-	return command[0] == commandPrefix;
+[[nodiscard]] bool HasCommandPrefix(const std::string& command) {
+	return not command.empty() and command.front() == commandPrefix;
 }
+
 void ExecuteCommand(const std::string& command) {
 	const Token token = LexToken(command);
 	switch (token) {
@@ -29,7 +33,7 @@ void ExecuteCommand(const std::string& command) {
 			break;
 		}
 		case (Token::QUIT): {
-			exit(0);
+			std::exit(EXIT_SUCCESS);
 			break;
 		}
 		case (Token::INVALID): {
@@ -44,8 +48,17 @@ void ExecuteCommand(const std::string& command) {
 }
 
 static void PrintCommands() {
-	const std::vector<std::string> commands = { "!playercount","!quit","!commands"};
-	for (std::string command : commands) {
-		Print("\t" + command);
+	constexpr std::array commands = { "!playercount", "!quit", "!commands"};
+	for (const auto& command : commands) {
+		// Print function not used here to avoid heap allocations due
+		// to conversion to std::string
+		//
+		// TODO: make Print function a variadic template to print anything
+		
+		// output either with iostream:
+		// std::cout << "\t" << command << "\n";
+
+		// or (even better) with iostream and std::format:
+		std::cout << std::format("\t{}\n", command);
 	}
 }

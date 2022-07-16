@@ -14,19 +14,19 @@ static std::string ReadInput();
 static void StripString(std::string& input);
 
 // Input
-static std::string ReadInput() {
+[[nodiscard]] static std::string ReadInput() {
 	std::string toReturn;
 	std::getline(std::cin, toReturn);
 	StripString(toReturn);
 	return toReturn;
 }
 
-bool TryGetStringInput(std::string& input) {
+[[nodiscard]] bool TryGetStringInput(std::string& input) {
 	input = ReadInput();
 	return CommandCheck(input);
 }
 
-bool TryGetIntInput(int& input) {
+[[nodiscard]] bool TryGetIntInput(int& input) {
 	std::string localInput = ReadInput();
 	if (CommandCheck(localInput)) {
 		return false;

@@ -6,10 +6,11 @@
 #include "DSCards.h"
 #include "DSConfig.h"
 #include "Helper.h"
-#include <format>
 #include <array>
 #include <algorithm>
+#include <format>
 #include <random>
+#include <ranges>
 
 
 const static std::string hedNumber = "Nr.";
@@ -18,35 +19,37 @@ const static std::string hedTask = "Aufgabe";
 
 // Cards
 Card::Card(const std::array<int, 3>& dificulties, const std::array<std::string, 2>& text)
-	: threePlayerDifficulty(dificulties[0]), fourPlayerDifficulty(dificulties[1]),
-	fivePlayerDifficulty(dificulties[2]), desciption(text[0]), extraText(text[1]) {}
-int Card::GetDificulty() const {
+	: threePlayerDifficulty(dificulties[0])
+	, fourPlayerDifficulty(dificulties[1])
+	, fivePlayerDifficulty(dificulties[2])
+	, description(text[0])
+	, extraText(text[1]) { }
+
+[[nodiscard]] int Card::GetDificulty() const {
 	switch (GetPlayerCount()) {
-	case (PlayerCount::THREE): {
-		return threePlayerDifficulty;
+		case PlayerCount::THREE:
+			return threePlayerDifficulty;
+		case PlayerCount::FOUR:
+			return fourPlayerDifficulty;
+		case PlayerCount::FIVE:
+			return fivePlayerDifficulty;
+		default:
+			return fourPlayerDifficulty;
 	}
-	case (PlayerCount::FOUR): {
-		return fourPlayerDifficulty;
-	}
-	case (PlayerCount::FIVE): {
-		return fivePlayerDifficulty;
-	}
-	default: {
-		return fourPlayerDifficulty;
-	}
-	}
-}
-std::string Card::GetDesciption() const {
-	return desciption;
-}
-std::string Card::GetExtraText() const {
-	return extraText;
-}
-std::string Card::ToString() const {
-	return std::format("Schwirigkeit: {} / Aufgabe: {} / Zusatz: {}",
-		GetDificulty(), desciption, extraText);
 }
 
+[[nodiscard]] std::string Card::GetDescription() const {
+	return description;
+}
+
+[[nodiscard]] std::string Card::GetExtraText() const {
+	return extraText;
+}
+
+[[nodiscard]] std::string Card::ToString() const {
+	return std::format("Schwirigkeit: {} / Aufgabe: {} / Zusatz: {}",
+		GetDificulty(), description, extraText);
+}
 
 // Free Print Hed
 static std::array<int, 4> GetSpacer(const std::vector<Card>& cards);
@@ -82,7 +85,7 @@ std::array<int, 4> GetSpacer(const std::vector<Card>& cards) {
 			difficultyWith = size;
 		}
 
-		size = ("- " + card.GetDesciption()).size();
+		size = ("- " + card.GetDescription()).size();
 		if (size > taskWith) {
 			taskWith = size;
 		}
@@ -114,7 +117,7 @@ void PrintHeadline(const std::array<int, 4>& spacer) {
 	PrintLine(spacer);
 }
 void PrintCard(const Card& card, const std::array<int, 4>& spacer, const int count) {
-	std::array<std::string, 4> entries = { "",std::to_string(count), std::to_string(card.GetDificulty()),"- " + card.GetDesciption() };
+	std::array<std::string, 4> entries = { "",std::to_string(count), std::to_string(card.GetDificulty()),"- " + card.GetDescription() };
 	std::string toPrint;
 	for (int i = 1; i < spacer.size(); ++i) {
 		toPrint += '|' + GetCharXTimes(spacer[0], ' ') + entries[i] + 
@@ -150,8 +153,9 @@ std::string GetCharXTimes(const int x, const char s) {
 
 // Free Cardset Hed
 static int GetTotalDifficultyCount();
+
 // Free Cardset
-bool TryGetCardSet(const int difficultyCount, std::vector<Card>& selection) {
+[[nodiscard]] bool TryGetCardSet(const int difficultyCount, std::vector<Card>& selection) {
 	int totalDifficultyCount = GetTotalDifficultyCount();
 	if (difficultyCount > totalDifficultyCount) {
 		return true;
@@ -196,13 +200,31 @@ static int GetTotalDifficultyCount() {
 
 // Free Remove Cards
 void RemoveCardsFromPool(const std::vector<Card>& selection) {
+	// It would be better to take the selection as const std::unordered_set<T>& where
+	// T would be some integer type which represents the unique identifier of a card.
+	// That would be more efficient and would also make the inner lambda (see below)
+	// simpler.
+
 	std::vector<Card>& cards = GetCards();
-	for (int i = 0; i < selection.size(); ++i) {
-		for (int j = 0; j < cards.size(); ++j) {
-			if (selection[i].GetDesciption() == cards[j].GetDesciption()) {
-				cards.erase(cards.begin()+j);
-				break;
-			}
-		}
-	}
+
+	// Erasing elements from a container is usually done via the
+	// "erase-remove idiom" (https://en.wikipedia.org/wiki/Erase%E2%80%93remove_idiom).
+	// Because we're using C++20, we can also use the ranges-library.
+	using std::ranges::remove_if, std::ranges::find_if, std::begin, std::end;
+
+	cards.erase(begin(remove_if(
+		cards,
+		[&](const auto& card) {
+			// this lambda must return true, if the element should be removed
+			
+			// we try to find the current card description in the descriptions of the selection
+			const auto result_iterator = find_if(selection,
+				[&](const auto& selected) {
+					// this lambda must return true if we have found the card we're looking for
+					return selected.GetDescription() == card.GetDescription();
+				});
+			const bool found = (result_iterator != end(selection));
+			return found;
+		})),
+		end(cards));
 }

@@ -5,18 +5,16 @@
 
 #include "Token.h"
 
-const Token LexToken(const std::string& command) {
+[[nodiscard]] Token LexToken(const std::string& command) {
 	if (command == "!commands") {
 		return Token::COMMAND;
-	}
-	else if (command == "!playercount") {
+	}	
+	if (command == "!playercount") {
 		return Token::PLAYER_COUNT;
 	}
-	else if (command == "!quit") {
+	if (command == "!quit") {
 		return Token::QUIT;
-	}
-	else {
-		return Token::INVALID;
-	}
+	}	
+	return Token::INVALID;
 }
 
