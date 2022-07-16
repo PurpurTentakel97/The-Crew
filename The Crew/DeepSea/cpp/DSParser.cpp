@@ -18,6 +18,7 @@ static std::vector<std::string> LoadConfig();
 	const std::vector<std::string> input = LoadConfig();
 	std::vector<Card> cards;
 	cards.reserve(input.size());
+	int index = 0;
 	for (const std::string& entry : input) {
 		size_t start = 0;
 		size_t end = 0;
@@ -36,7 +37,8 @@ static std::vector<std::string> LoadConfig();
 			start = end + 1;
 		}
 
-		cards.emplace_back(difficulties, text);
+		cards.emplace_back(index, difficulties, text);
+		++index;
 	}
 	return cards;
 }

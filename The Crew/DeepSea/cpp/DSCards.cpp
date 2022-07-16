@@ -24,12 +24,16 @@ struct Hedline {
 
 
 // Cards
-Card::Card(const std::array<int, 3>& dificulties, const std::array<std::string, 2>& text)
-	: threePlayerDifficulty(dificulties[0])
+Card::Card(const int index, const std::array<int, 3>& dificulties, const std::array<std::string, 2>& text)
+	: index(index)
+	, threePlayerDifficulty(dificulties[0])
 	, fourPlayerDifficulty(dificulties[1])
 	, fivePlayerDifficulty(dificulties[2])
 	, description(text[0])
 	, extraText(text[1]) {}
+[[nodiscard]] int Card::GetIndex() const {
+	return index;
+}
 [[nodiscard]] int Card::GetDifficulty() const {
 	const PlayerCount& playerCount = PlayerCount::GetInstance();
 	switch (playerCount.GetPlayerCount()) {
@@ -212,7 +216,7 @@ void RemoveCardsFromPool(const std::vector<Card>& selection) {
 	std::vector<Card>& cards = DSConfig::GetInstance().GetCards();
 	for (int i = 0; i < selection.size(); ++i) {
 		for (int j = 0; j < cards.size(); ++j) {
-			if (selection[i].GetDesciption() == cards[j].GetDesciption()) {
+			if (selection[i].GetIndex() == cards[j].GetIndex()) {
 				cards.erase(cards.begin()+j);
 				break;
 			}
