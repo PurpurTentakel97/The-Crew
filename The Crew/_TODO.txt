@@ -3,7 +3,6 @@
 // 16.07.2022
 //
 
-Maybe add remove one color by playerCount 3
 Implement Extra rules
 Implement multiple Config
 

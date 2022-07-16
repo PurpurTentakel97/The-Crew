@@ -39,6 +39,7 @@ PlayerCount::PlayerCount()
 [[nodiscard]] bool PlayerCount::SetPlayerCount(int input) {
 	switch (input) {
 		case 3:
+			PrintAwenser("One of you gets one more card. This card is not played at the end.");
 		case 4:
 		case 5: 
 			playerCount = static_cast<PlayerCountValue>(input);

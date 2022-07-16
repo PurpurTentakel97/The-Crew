@@ -27,8 +27,6 @@ void ExecuteCommand(const std::string& command) {
 			PlayerCount& playerCount = PlayerCount::GetInstance();
 			playerCount.SetPlayerCountWithInput();
 			PrintAwenser("done");
-			PrintAwenser("reload cards");
-			Reload();
 			break;
 		}
 		case Token::RELOAD: 
