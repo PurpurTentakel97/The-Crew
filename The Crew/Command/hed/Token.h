@@ -13,4 +13,4 @@ enum class Token {
 	INVALID,
 };
 
-const Token LexToken(const std::string& command);
+[[nodiscard]] Token LexToken(const std::string& command);

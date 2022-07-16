@@ -14,35 +14,36 @@ static std::string ReadInput();
 static void StripString(std::string& input);
 
 // Input
-static std::string ReadInput() {
+[[nodiscard]] static std::string ReadInput() {
 	std::string toReturn;
 	std::getline(std::cin, toReturn);
 	StripString(toReturn);
 	return toReturn;
 }
 
-bool TryGetStringInput(std::string& input) {
+[[nodiscard]] bool TryGetStringInput(std::string& input) {
 	input = ReadInput();
 	return CommandCheck(input);
 }
-bool TryGetIntInput(int& input) {
+
+[[nodiscard]] bool TryGetIntInput(int& input) {
 	std::string localInput = ReadInput();
 	if (CommandCheck(localInput)) {
-		return true;
+		return false;
 	}
 	try {
 		input = std::stoi(localInput);
 	}
 	catch (std::invalid_argument ex) {
 		Print("\tbad number");
-		return true;
+		return false;
 	}
 	catch (std::out_of_range ex) {
 		Print("\tbad number");
-		return true;
+		return false;
 	}
 
-	return false;
+	return true;
 }
 
 static bool CommandCheck(std::string& command) {

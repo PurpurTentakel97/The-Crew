@@ -6,5 +6,5 @@
 #pragma once
 #include <string>
 
-bool HasCommandPrefix(const std::string& command);
+[[nodiscard]] bool HasCommandPrefix(const std::string& command);
 void ExecuteCommand(const std::string& command);

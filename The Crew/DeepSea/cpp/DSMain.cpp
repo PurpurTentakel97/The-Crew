@@ -23,7 +23,7 @@ void ExecuteDeepSea() {
 	while (true) {
 		int difficultiyCount = 0;
 		Print("enter difficulty (recommended: 5 - 20)");
-		while (TryGetIntInput(difficultiyCount)) {}
+		while (not TryGetIntInput(difficultiyCount)) {}
 		std::vector<Card> selection;
 		bool reloaded = false;
 		while (TryGetCardSet(difficultiyCount, selection)) {
