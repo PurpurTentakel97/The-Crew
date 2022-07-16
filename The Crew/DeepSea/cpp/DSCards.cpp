@@ -3,23 +3,33 @@
 // 14.07.2022
 //
 
+#include "Helper.h"
+
 #include "DSCards.h"
 #include "DSConfig.h"
-#include "Helper.h"
-#include <format>
+
 #include <array>
 #include <algorithm>
+#include <format>
 #include <random>
 
 
-const static std::string hedNumber = "Nr.";
-const static std::string hedDifficulty = "Schwierigkeit";
-const static std::string hedTask = "Aufgabe";
+struct Hedline {
+	inline static std::string number = "Nr.";
+	inline static std::string difficulty = "Schwierigkeit";
+	inline static std::string task = "Aufgabe";
+	Hedline() = delete;
+	Hedline(const Hedline& old) = delete;
+};
+
 
 // Cards
 Card::Card(const std::array<int, 3>& dificulties, const std::array<std::string, 2>& text)
-	: threePlayerDifficulty(dificulties[0]), fourPlayerDifficulty(dificulties[1]),
-	fivePlayerDifficulty(dificulties[2]), description(text[0]), extraText(text[1]) {}
+	: threePlayerDifficulty(dificulties[0])
+	, fourPlayerDifficulty(dificulties[1])
+	, fivePlayerDifficulty(dificulties[2])
+	, description(text[0])
+	, extraText(text[1]) {}
 [[nodiscard]] int Card::GetDifficulty() const {
 	const PlayerCount& playerCount = PlayerCount::GetInstance();
 	switch (playerCount.GetPlayerCount()) {
@@ -73,10 +83,10 @@ void PrintCardTable(const std::vector<Card>& cards) {
 }
 std::array<int, 4> GetSpacer(const std::vector<Card>& cards) {
 	int columnSpacing = 2;
-	size_t numberWith = std::to_string(cards.size()).size() > hedNumber.size()
-		? std::to_string(cards.size()).size() : hedNumber.size();
-	size_t difficultyWith = hedDifficulty.size();
-	size_t taskWith = hedTask.size();
+	size_t numberWith = std::to_string(cards.size()).size() > Hedline::number.size()
+		? std::to_string(cards.size()).size() : Hedline::number.size();
+	size_t difficultyWith = Hedline::difficulty.size();
+	size_t taskWith = Hedline::task.size();
 	for (const Card& card : cards) {
 		size_t size = std::to_string(card.GetDifficulty()).size();
 		if (size > difficultyWith) {
@@ -99,7 +109,7 @@ std::array<int, 4> GetSpacer(const std::vector<Card>& cards) {
 void PrintHeadline(const std::array<int, 4>& spacer) {
 	PrintLine(spacer);
 
-	std::array<std::string, 4> headlines = { "",hedNumber,hedDifficulty,hedTask };
+	std::array<std::string, 4> headlines = { "",Hedline::number,Hedline::difficulty,Hedline::task };
 	std::string toPrint;
 	for (int i = 1; i < spacer.size(); ++i) {
 		int space = static_cast<int>((spacer[i] - headlines[i].size()) / 2 + spacer[0]);
@@ -153,15 +163,16 @@ std::string GetCharXTimes(const int x, const char s) {
 static int GetTotalDifficultyCount();
 // Free Cardset
 [[nodiscard]] bool TryGetCardSet(const int difficultyCount, std::vector<Card>& selection) {
+	DSConfig& dsConfig = DSConfig::GetInstance();
 	int totalDifficultyCount = GetTotalDifficultyCount();
 	if (difficultyCount > totalDifficultyCount) {
 		return true;
 	}
 	if (difficultyCount == totalDifficultyCount) {
-		selection = GetCards();
+		selection = dsConfig.GetCards();
 		return false;
 	}
-	std::vector<Card> cards = GetCards();
+	std::vector<Card> cards = dsConfig.GetCards();
 	for (int i = 0; i < 10; ++i) {
 		selection.clear();
 		std::random_device rd;
@@ -186,7 +197,8 @@ static int GetTotalDifficultyCount();
 }
 static int GetTotalDifficultyCount() {
 	int count = 0;
-	for (Card card : GetCards()) {
+	DSConfig& dsConfig = DSConfig::GetInstance();
+	for (Card card : dsConfig.GetCards()) {
 		count += card.GetDifficulty();
 	}
 	return count;
@@ -197,7 +209,7 @@ static int GetTotalDifficultyCount() {
 
 // Free Remove Cards
 void RemoveCardsFromPool(const std::vector<Card>& selection) {
-	std::vector<Card>& cards = GetCards();
+	std::vector<Card>& cards = DSConfig::GetInstance().GetCards();
 	for (int i = 0; i < selection.size(); ++i) {
 		for (int j = 0; j < cards.size(); ++j) {
 			if (selection[i].GetDesciption() == cards[j].GetDesciption()) {
