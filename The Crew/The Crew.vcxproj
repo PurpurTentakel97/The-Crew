@@ -23,7 +23,9 @@
     <ClInclude Include="Command\hed\Token.h" />
     <ClInclude Include="DeepSea\hed\DSCards.h" />
     <ClInclude Include="DeepSea\hed\DSConfig.h" />
+    <ClInclude Include="DeepSea\hed\DSParser.h" />
     <ClInclude Include="_hed\Config.h" />
+    <ClInclude Include="_hed\Execution.h" />
     <ClInclude Include="_hed\Helper.h" />
   </ItemGroup>
   <ItemGroup>
@@ -40,6 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Config\DeepSea\DeepSea.cnfg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="_TODO.txt" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

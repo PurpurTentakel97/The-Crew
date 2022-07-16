@@ -1,0 +1,8 @@
+//
+// Purpur Tentakel
+// 16.07.2022
+//
+
+Reload Cards when chance playerCount
+Add Extra rules
+Add multiple Config

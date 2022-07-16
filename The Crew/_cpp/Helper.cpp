@@ -9,12 +9,12 @@
 #include <stdexcept>
 #include <random>
 
-static bool CommandCheck(std::string& command);
-static std::string ReadInput();
+[[nodiscard]] static bool CommandCheck(std::string& command);
+[[nodiscard]] static std::string ReadInput();
 static void StripString(std::string& input);
 
 // Input
-static std::string ReadInput() {
+[[nodiscard]] std::string ReadInput() {
 	std::string toReturn;
 	std::getline(std::cin, toReturn);
 	StripString(toReturn);
@@ -45,7 +45,7 @@ static std::string ReadInput() {
 	return true;
 }
 
-static bool CommandCheck(std::string& command) {
+[[nodiscard]] bool CommandCheck(std::string& command) {
 	if (HasCommandPrefix(command)) {
 		ExecuteCommand(command);
 		return true;
@@ -62,14 +62,14 @@ void Print(const std::string& message, const bool newLine) {
 	}
 	std::cout << message;
 }
-void Print(const int number, bool newLine) {
+void Print(const int number, const bool newLine) {
 	if (newLine) {
 		std::cout << number << std::endl;
 		return;
 	}
 	std::cout << number;
 }
-void Print(const char character, bool newLine) {
+void Print(const char character, const bool newLine) {
 	if (newLine) {
 		std::cout << character << std::endl;
 		return;

@@ -7,8 +7,19 @@
 #include "DSCards.h"
 #include <vector>
 
-void SetDSConfig();
+struct DSConfig {
+public:
+	[[nodiscard]] static DSConfig& GetInstance();
+	[[nodiscard]] std::vector<Card>& GetCards();
+	void SetDSConfig();
+	void SetCards(std::vector<Card> newCards);
+private:
+	std::vector<Card> cards;
+	DSConfig();
+	DSConfig(const DSConfig& old) = delete;
+};
 
-void SetCards(std::vector<Card> newCards);
-std::vector<Card>& GetCards();
+
+
+
 

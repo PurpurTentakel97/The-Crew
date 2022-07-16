@@ -3,13 +3,14 @@
 // 14.07.2022
 //
 
+#include "Helper.h"
+
 #include "DSConfig.h"
 #include "DSCards.h"
-#include "Helper.h"
-#include <vector>
+#include "DSParser.h"
+
 #include <windows.h>
 
-extern std::vector<Card> ParseCards();
 
 bool IsValidSelection() {
 	Print("valid selection? (1 -> yes)");
@@ -19,7 +20,8 @@ bool IsValidSelection() {
 }
 
 void ExecuteDeepSea() {
-	SetDSConfig();
+	DSConfig& dsConfig = DSConfig::GetInstance();
+	dsConfig.SetDSConfig();
 	while (true) {
 		int difficultiyCount = 0;
 		Print("enter difficulty (recommended: 5 - 20)");
@@ -33,7 +35,7 @@ void ExecuteDeepSea() {
 				exit(0);
 			}
 			Print("\tno selection left -> reload cards");
-			SetCards(ParseCards());
+			dsConfig.SetCards(ParseCards());
 			reloaded = true;
 		}
 		PrintCardTable(selection);

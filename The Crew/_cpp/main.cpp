@@ -5,14 +5,8 @@
 //
 
 #include "Helper.h"
+#include "Execution.h"
 
-extern void ExecuteOriginal();
-extern void ExecuteDeepSea();
-
-enum class ProgrammType {
-	ORIGINAL = 1,
-	DEEP_SEE
-};
 
 static void ExecuteProgramm(int input) {
 	switch (static_cast<ProgrammType>(input)) {

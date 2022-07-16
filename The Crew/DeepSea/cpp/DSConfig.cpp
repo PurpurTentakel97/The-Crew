@@ -6,21 +6,25 @@
 #include "DSConfig.h"
 #include "DSCards.h"
 #include "Config.h"
+#include "DSParser.h"
 #include <vector>
 
-extern std::vector<Card> ParseCards();
 
-static std::vector<Card> cards;
 
-void SetDSConfig() {
+// DSConfig
+DSConfig::DSConfig(){}
+[[nodiscard]] DSConfig& DSConfig::GetInstance() {
+	static DSConfig dsConfig = DSConfig();
+	return dsConfig;
+}
+[[nodiscard]] std::vector<Card>& DSConfig::GetCards() {
+	return cards;
+}
+void DSConfig::SetDSConfig() {
 	PlayerCount& playerCount = PlayerCount::GetInstance();
 	playerCount.SetPlayerCountWithInput();
 	cards = ParseCards();
 }
-
-void SetCards(std::vector<Card> newCards) {
+void DSConfig::SetCards(std::vector<Card> newCards) {
 	cards = newCards;
-}
-std::vector<Card>& GetCards() {
-	return cards;
 }

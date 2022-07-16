@@ -7,6 +7,8 @@
     <ClInclude Include="Command\hed\Command.h" />
     <ClInclude Include="DeepSea\hed\DSCards.h" />
     <ClInclude Include="DeepSea\hed\DSConfig.h" />
+    <ClInclude Include="_hed\Execution.h" />
+    <ClInclude Include="DeepSea\hed\DSParser.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="_cpp\Config.cpp" />
@@ -22,5 +24,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Config\DeepSea\DeepSea.cnfg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="_TODO.txt" />
   </ItemGroup>
 </Project>

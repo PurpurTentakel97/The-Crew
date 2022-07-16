@@ -3,9 +3,9 @@
 // 12.07.2022
 //
 
-#include <vector>
 #include <array>
 #include <fstream>
+#include "DSParser.h"
 #include "Config.h"
 #include "DSCards.h"
 #include "Helper.h"
@@ -14,7 +14,7 @@ const static char delimiter = ';';
 const static std::string fileName = "Config/DeepSea/DeepSeaDefault.cnfg";
 static std::vector<std::string> LoadConfig();
 
-std::vector<Card> ParseCards() {
+[[nodiscard]] std::vector<Card> ParseCards() {
 	const std::vector<std::string> input = LoadConfig();
 	std::vector<Card> cards;
 	cards.reserve(input.size());
