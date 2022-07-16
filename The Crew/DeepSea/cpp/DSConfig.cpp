@@ -14,7 +14,7 @@
 // DSConfig
 DSConfig::DSConfig(){}
 [[nodiscard]] DSConfig& DSConfig::GetInstance() {
-	static DSConfig dsConfig = DSConfig();
+	static DSConfig dsConfig;
 	return dsConfig;
 }
 [[nodiscard]] std::vector<Card>& DSConfig::GetCards() {

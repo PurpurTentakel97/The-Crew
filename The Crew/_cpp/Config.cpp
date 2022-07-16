@@ -10,7 +10,7 @@
 Config::Config()
 	: programmType(ProgrammType::INVALID) {}
 [[nodiscard]] Config& Config::GetInstance() {
-	static Config config = Config();
+	static Config config;
 	return config;
 }
 [[nodiscard]] char Config::GetCommandPrefix() const {
