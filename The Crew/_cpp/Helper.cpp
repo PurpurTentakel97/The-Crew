@@ -23,7 +23,7 @@ static std::string ReadInput() {
 
 bool TryGetStringInput(std::string& input) {
 	input = ReadInput();
-	return not CommandCheck(input);
+	return !CommandCheck(input);
 }
 bool TryGetIntInput(int& input) {
 	std::string localInput = ReadInput();

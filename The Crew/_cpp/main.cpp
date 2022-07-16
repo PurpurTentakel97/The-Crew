@@ -37,7 +37,7 @@ int main() {
 	while (true) {
 		Print("witch game do you play?\n1 -> original\n2 -> Deep Sea");
 		int input;
-		if (not TryGetIntInput(input)) {
+		if (!TryGetIntInput(input)) {
 			continue;
 		}
 		ExecuteProgramm(input);

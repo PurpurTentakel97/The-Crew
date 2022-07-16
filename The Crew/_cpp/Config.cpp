@@ -37,8 +37,8 @@ bool SetPlayerCount(int input) {
 void SetPlayerCountWithInput() {
 	int input = 0;
 	Print("enter player count (3-5)");
-	while (not TryGetIntInput(input)) {}
-	while (not SetPlayerCount(input)) {
-		while (not TryGetIntInput(input)) {}
+	while (!TryGetIntInput(input)) {}
+	while (!SetPlayerCount(input)) {
+		while (!TryGetIntInput(input)) {}
 	}
 }
