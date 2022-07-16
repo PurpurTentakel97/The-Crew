@@ -14,7 +14,7 @@ extern std::vector<Card> ParseCards();
 bool IsValidSelection() {
 	Print("valid selection? (1 -> yes)");
 	std::string input;
-	while(TryGetStringInput(input)){}
+	while(not TryGetStringInput(input)){}
 	return input == "1";
 }
 
@@ -23,7 +23,7 @@ void ExecuteDeepSea() {
 	while (true) {
 		int difficultiyCount = 0;
 		Print("enter difficulty (recommended: 5 - 20)");
-		while (TryGetIntInput(difficultiyCount)) {}
+		while (not TryGetIntInput(difficultiyCount)) {}
 		std::vector<Card> selection;
 		bool reloaded = false;
 		while (TryGetCardSet(difficultiyCount, selection)) {
@@ -37,7 +37,7 @@ void ExecuteDeepSea() {
 			reloaded = true;
 		}
 		PrintCardTable(selection);
-		if (!IsValidSelection()) {
+		if (not IsValidSelection()) {
 			Print("\tretry");
 			continue;
 		}

@@ -28,17 +28,17 @@ bool SetPlayerCount(int input) {
 	default:
 	{
 		Print("\tbad player count");
-		return true;
+		return false;
 	}
 	}
-	return false;
+	return true;
 }
 
 void SetPlayerCountWithInput() {
 	int input = 0;
 	Print("enter player count (3-5)");
-	while (TryGetIntInput(input)) {}
-	while (SetPlayerCount(input)) {
-		while (TryGetIntInput(input)) {}
+	while (not TryGetIntInput(input)) {}
+	while (not SetPlayerCount(input)) {
+		while (not TryGetIntInput(input)) {}
 	}
 }

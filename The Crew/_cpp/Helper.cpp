@@ -23,26 +23,26 @@ static std::string ReadInput() {
 
 bool TryGetStringInput(std::string& input) {
 	input = ReadInput();
-	return CommandCheck(input);
+	return not CommandCheck(input);
 }
 bool TryGetIntInput(int& input) {
 	std::string localInput = ReadInput();
 	if (CommandCheck(localInput)) {
-		return true;
+		return false;
 	}
 	try {
 		input = std::stoi(localInput);
 	}
 	catch (std::invalid_argument ex) {
 		Print("\tbad number");
-		return true;
+		return false;
 	}
 	catch (std::out_of_range ex) {
 		Print("\tbad number");
-		return true;
+		return false;
 	}
 
-	return false;
+	return true;
 }
 
 static bool CommandCheck(std::string& command) {
@@ -52,7 +52,6 @@ static bool CommandCheck(std::string& command) {
 	}
 	return false;
 }
-
 
 
 // Output
