@@ -8,7 +8,7 @@
 
 [[nodiscard]] bool TryGetStringInputOrExecuteCommand(std::string& input);
 [[nodiscard]] bool TryGetIntInputOrExecuteCommand(int& input);
-[[nodiscard]] int GetRandomInt(int min, int max);
+[[nodiscard]] int GetRandomInt(int max);
 
 void Print(const std::string& message, bool newLine = true);
 void Print(int number, bool newLine = true);

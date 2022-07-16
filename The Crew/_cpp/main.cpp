@@ -4,6 +4,8 @@
 // C++ 20
 //
 
+// Random by coder2k (https://github.com/mgerhold)
+
 #include "Config.h"
 #include "Helper.h"
 #include "Execution.h"

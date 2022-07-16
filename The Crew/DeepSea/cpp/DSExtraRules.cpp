@@ -8,7 +8,7 @@
 #include <format>
 
 [[nodiscard]] std::string GetExtraRule() {
-	const int random = GetRandomInt(0,static_cast<int>(ExtraRules::SIZE));
+	const int random = GetRandomInt(static_cast<int>(ExtraRules::SIZE));
 	const std::string first = "extra rule -> ";
 	switch (static_cast<ExtraRules>(random)) {
 		case ExtraRules::NO_EMERGENCY_SIGNAL:
@@ -28,7 +28,7 @@
 		case ExtraRules::HARDEST_TASK_FOR_CAPTAIN:
 			return std::format("{}hardest task for captain -> the captain must complete the hardest task or one of the hardest tasks.", first);
 		case ExtraRules::CARD_FOR_CHOOCE_COMMUNICATE:
-			return std::format("{}card for communication -> pick a card. is it a:\n\t-> 1, 2, 3->no restriction\n\t-> 4, 5, 6->communication with less tokens.puts it in the middle and turns over 2.\n\t-> 7, 8, 9->no communication.", first);
+			return std::format("{}card for communication -> pick a card. is it a:\n\t-> 1,2,3 -> no restriction.\n\t-> 4,5,6 -> communication with less tokens.puts it in the middle and turns over 2.\n\t-> 7,8,9 -> no communication.", first);
 		case ExtraRules::COMMUNICATE_TO_THE_SECOND_ROUND:
 			return std::format("{}second round communication -> you are not allowed to communicate until the 2nd round is over.", first);
 		case ExtraRules::FREE_SELECTION:
@@ -38,7 +38,7 @@
 	}
 }
 [[nodiscard]] std::string GetTime() {
-	const int random = GetRandomInt(0,static_cast<int>(Time::SIZE));
+	const int random = GetRandomInt(static_cast<int>(Time::SIZE));
 	switch (static_cast<Time>(random)) {
 		case Time::FOUR:
 			return "4:00";

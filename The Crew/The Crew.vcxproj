@@ -28,6 +28,7 @@
     <ClInclude Include="_hed\Config.h" />
     <ClInclude Include="_hed\Execution.h" />
     <ClInclude Include="_hed\Helper.h" />
+    <ClInclude Include="_hed\Random.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Command\cpp\Command.cpp" />
@@ -41,6 +42,7 @@
     <ClCompile Include="_cpp\Config.cpp" />
     <ClCompile Include="_cpp\Helper.cpp" />
     <ClCompile Include="_cpp\main.cpp" />
+    <ClCompile Include="_cpp\Random.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Config\DeepSea\DeepSea.cnfg" />
