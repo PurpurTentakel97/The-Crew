@@ -6,39 +6,33 @@
 #include "Config.h"
 #include "Helper.h"
 
-static PlayerCount playerCount;
-
-PlayerCount GetPlayerCount() {
+PlayerCount::PlayerCount()
+	: playerCount(PlayerCountValue::THREE) {}
+[[nodiscard]] PlayerCount& PlayerCount::GetInstance() {
+	static PlayerCount playercount = PlayerCount();
+	return playercount;
+}
+[[nodiscard]] PlayerCountValue PlayerCount::GetPlayerCount() const {
 	return playerCount;
 }
-bool SetPlayerCount(int input) {
+bool PlayerCount::SetPlayerCount(int input) {
 	switch (input) {
-	case (3): {
-		playerCount = PlayerCount::THREE;
-		break;
+		case 3:
+		case 4:
+		case 5: 
+			playerCount = static_cast<PlayerCountValue>(input);
+			return true;
+		default:
+			Print("\tbad player count");
+			return false;
 	}
-	case (4): {
-		playerCount = PlayerCount::FOUR;
-		break;
-	}
-	case(5): {
-		playerCount = PlayerCount::FIVE;
-		break;
-	}
-	default:
-	{
-		Print("\tbad player count");
-		return false;
-	}
-	}
-	return true;
 }
-
-void SetPlayerCountWithInput() {
+void PlayerCount::SetPlayerCountWithInput() {
 	int input = 0;
 	Print("enter player count (3-5)");
-	while (!TryGetIntInput(input)) {}
+	while (!TryGetIntInputOrExecuteCommand(input)) {}
 	while (!SetPlayerCount(input)) {
-		while (!TryGetIntInput(input)) {}
+		while (!TryGetIntInputOrExecuteCommand(input)) {}
 	}
 }
+

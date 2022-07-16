@@ -5,7 +5,7 @@
 
 #include "Token.h"
 
-const Token LexToken(const std::string& command) {
+[[nodiscard]] Token LexToken(const std::string& command) {
 	if (command == "!commands") {
 		return Token::COMMAND;
 	}

@@ -5,6 +5,7 @@
 
 #include "DSConfig.h"
 #include "DSCards.h"
+#include "Config.h"
 #include <vector>
 
 extern std::vector<Card> ParseCards();
@@ -12,7 +13,8 @@ extern std::vector<Card> ParseCards();
 static std::vector<Card> cards;
 
 void SetDSConfig() {
-	SetPlayerCountWithInput();
+	PlayerCount& playerCount = PlayerCount::GetInstance();
+	playerCount.SetPlayerCountWithInput();
 	cards = ParseCards();
 }
 

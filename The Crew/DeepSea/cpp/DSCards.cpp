@@ -19,16 +19,17 @@ const static std::string hedTask = "Aufgabe";
 // Cards
 Card::Card(const std::array<int, 3>& dificulties, const std::array<std::string, 2>& text)
 	: threePlayerDifficulty(dificulties[0]), fourPlayerDifficulty(dificulties[1]),
-	fivePlayerDifficulty(dificulties[2]), desciption(text[0]), extraText(text[1]) {}
-int Card::GetDificulty() const {
-	switch (GetPlayerCount()) {
-	case (PlayerCount::THREE): {
+	fivePlayerDifficulty(dificulties[2]), description(text[0]), extraText(text[1]) {}
+[[nodiscard]] int Card::GetDifficulty() const {
+	const PlayerCount& playerCount = PlayerCount::GetInstance();
+	switch (playerCount.GetPlayerCount()) {
+	case (PlayerCountValue::THREE): {
 		return threePlayerDifficulty;
 	}
-	case (PlayerCount::FOUR): {
+	case (PlayerCountValue::FOUR): {
 		return fourPlayerDifficulty;
 	}
-	case (PlayerCount::FIVE): {
+	case (PlayerCountValue::FIVE): {
 		return fivePlayerDifficulty;
 	}
 	default: {
@@ -36,15 +37,15 @@ int Card::GetDificulty() const {
 	}
 	}
 }
-std::string Card::GetDesciption() const {
-	return desciption;
+[[nodiscard]] std::string Card::GetDesciption() const {
+	return description;
 }
-std::string Card::GetExtraText() const {
+[[nodiscard]] std::string Card::GetExtraText() const {
 	return extraText;
 }
-std::string Card::ToString() const {
+[[nodiscard]] std::string Card::ToString() const {
 	return std::format("Schwirigkeit: {} / Aufgabe: {} / Zusatz: {}",
-		GetDificulty(), desciption, extraText);
+		GetDifficulty(), description, extraText);
 }
 
 
@@ -77,7 +78,7 @@ std::array<int, 4> GetSpacer(const std::vector<Card>& cards) {
 	size_t difficultyWith = hedDifficulty.size();
 	size_t taskWith = hedTask.size();
 	for (const Card& card : cards) {
-		size_t size = std::to_string(card.GetDificulty()).size();
+		size_t size = std::to_string(card.GetDifficulty()).size();
 		if (size > difficultyWith) {
 			difficultyWith = size;
 		}
@@ -114,7 +115,7 @@ void PrintHeadline(const std::array<int, 4>& spacer) {
 	PrintLine(spacer);
 }
 void PrintCard(const Card& card, const std::array<int, 4>& spacer, const int count) {
-	std::array<std::string, 4> entries = { "",std::to_string(count), std::to_string(card.GetDificulty()),"- " + card.GetDesciption() };
+	std::array<std::string, 4> entries = { "",std::to_string(count), std::to_string(card.GetDifficulty()),"- " + card.GetDesciption() };
 	std::string toPrint;
 	for (int i = 1; i < spacer.size(); ++i) {
 		toPrint += '|' + GetCharXTimes(spacer[0], ' ') + entries[i] + 
@@ -151,7 +152,7 @@ std::string GetCharXTimes(const int x, const char s) {
 // Free Cardset Hed
 static int GetTotalDifficultyCount();
 // Free Cardset
-bool TryGetCardSet(const int difficultyCount, std::vector<Card>& selection) {
+[[nodiscard]] bool TryGetCardSet(const int difficultyCount, std::vector<Card>& selection) {
 	int totalDifficultyCount = GetTotalDifficultyCount();
 	if (difficultyCount > totalDifficultyCount) {
 		return true;
@@ -168,8 +169,8 @@ bool TryGetCardSet(const int difficultyCount, std::vector<Card>& selection) {
 		shuffle(cards.begin(), cards.end(), rng);
 		int count = 0;
 		for (const Card& card : cards) {
-			if (count + card.GetDificulty() <= difficultyCount) {
-				count += card.GetDificulty();
+			if (count + card.GetDifficulty() <= difficultyCount) {
+				count += card.GetDifficulty();
 				selection.push_back(card);
 			}
 			if (count >= difficultyCount) {
@@ -186,7 +187,7 @@ bool TryGetCardSet(const int difficultyCount, std::vector<Card>& selection) {
 static int GetTotalDifficultyCount() {
 	int count = 0;
 	for (Card card : GetCards()) {
-		count += card.GetDificulty();
+		count += card.GetDifficulty();
 	}
 	return count;
 }

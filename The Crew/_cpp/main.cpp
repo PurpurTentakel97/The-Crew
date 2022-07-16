@@ -4,7 +4,6 @@
 // C++ 20
 //
 
-#include "Config.h"
 #include "Helper.h"
 
 extern void ExecuteOriginal();
@@ -37,7 +36,7 @@ int main() {
 	while (true) {
 		Print("witch game do you play?\n1 -> original\n2 -> Deep Sea");
 		int input;
-		if (!TryGetIntInput(input)) {
+		if (!TryGetIntInputOrExecuteCommand(input)) {
 			continue;
 		}
 		ExecuteProgramm(input);

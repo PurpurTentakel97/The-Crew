@@ -13,16 +13,16 @@ private:
 	int threePlayerDifficulty;
 	int fourPlayerDifficulty;
 	int fivePlayerDifficulty;
-	std::string desciption;
+	std::string description;
 	std::string extraText;
 public:
 	Card(const std::array<int, 3>& difficulties, const std::array<std::string, 2>& text);
-	int GetDificulty() const;
-	std::string GetDesciption() const;
-	std::string GetExtraText() const;
-	std::string ToString() const;
+	[[nodiscard]] int GetDifficulty() const;
+	[[nodiscard]] std::string GetDesciption() const;
+	[[nodiscard]] std::string GetExtraText() const;
+	[[nodiscard]] std::string ToString() const;
 };
 
 void PrintCardTable(const std::vector<Card>& cards);
-bool TryGetCardSet(int difficultyCount, std::vector<Card>& selection);
+[[nodiscard]] bool TryGetCardSet(int difficultyCount, std::vector<Card>& selection);
 void RemoveCardsFromPool(const std::vector<Card>& selection);

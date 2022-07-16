@@ -4,13 +4,25 @@
 //
 
 #pragma once
-
-enum class PlayerCount {
+enum class PlayerCountValue {
 	THREE = 3,
 	FOUR,
 	FIVE
 };
 
-PlayerCount GetPlayerCount();
-bool SetPlayerCount(int input);
-void SetPlayerCountWithInput();
+struct PlayerCount {
+private:
+	PlayerCountValue playerCount;
+	PlayerCount();
+	PlayerCount(const PlayerCount& old) = delete;
+public:
+	[[nodiscard]] static PlayerCount& GetInstance();
+	[[nodiscard]] PlayerCountValue GetPlayerCount() const;
+	bool SetPlayerCount(int input);
+	void SetPlayerCountWithInput();
+};
+
+
+
+
+

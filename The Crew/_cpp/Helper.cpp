@@ -21,11 +21,11 @@ static std::string ReadInput() {
 	return toReturn;
 }
 
-bool TryGetStringInput(std::string& input) {
+[[nodiscard]] bool TryGetStringInputOrExecuteCommand(std::string& input) {
 	input = ReadInput();
 	return !CommandCheck(input);
 }
-bool TryGetIntInput(int& input) {
+[[nodiscard]] bool TryGetIntInputOrExecuteCommand(int& input) {
 	std::string localInput = ReadInput();
 	if (CommandCheck(localInput)) {
 		return false;

@@ -13,7 +13,7 @@ static char commandPrefix = '!';
 
 static void PrintCommands();
 
-bool HasCommandPrefix(const std::string& command) {
+[[nodiscard]] bool HasCommandPrefix(const std::string& command) {
 	return command[0] == commandPrefix;
 }
 void ExecuteCommand(const std::string& command) {
@@ -24,7 +24,8 @@ void ExecuteCommand(const std::string& command) {
 			break;
 		}
 		case (Token::PLAYER_COUNT): {
-			SetPlayerCountWithInput();
+			PlayerCount& playerCount = PlayerCount::GetInstance();
+			playerCount.SetPlayerCountWithInput();
 			Print("\tdone");
 			break;
 		}
@@ -43,7 +44,7 @@ void ExecuteCommand(const std::string& command) {
 	}
 }
 
-static void PrintCommands() {
+void PrintCommands() {
 	const std::vector<std::string> commands = { "!playercount","!quit","!commands"};
 	for (std::string command : commands) {
 		Print("\t" + command);
