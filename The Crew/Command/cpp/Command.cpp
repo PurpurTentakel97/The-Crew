@@ -9,15 +9,14 @@
 #include "Config.h"
 #include <array>
 
-static char commandPrefix = '!';
-
 static void PrintCommands();
 
 [[nodiscard]] bool HasCommandPrefix(const std::string& command) {
-	return !command.empty() && command[0] == commandPrefix;
+	const Config& config = Config::GetInstance();
+	return !command.empty() && command[0] == config.GetCommandPrefix();
 }
 void ExecuteCommand(const std::string& command) {
-	const Token token = LexToken(command);
+	const Token& token = LexToken(command);
 	switch (token) {
 		case (Token::COMMAND): {
 			PrintCommands();
@@ -45,7 +44,7 @@ void ExecuteCommand(const std::string& command) {
 }
 
 void PrintCommands() {
-	constexpr std::array commands = { "!playercount", "!quit", "!commands"};
+	const auto& commands = Config::GetInstance().GetCommands();
 	for (const std::string& command : commands) {
 		Print("\t" + command);
 	}

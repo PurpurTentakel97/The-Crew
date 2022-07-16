@@ -4,15 +4,17 @@
 //
 
 #include "Token.h"
+#include "Config.h"
 
 [[nodiscard]] Token LexToken(const std::string& command) {
-	if (command == "!commands") {
+	const auto& commands = Config::GetInstance().GetCommands();
+	if (command == commands[0]) {
 		return Token::COMMAND;
 	}
-	if (command == "!playercount") {
+	if (command == commands[1]) {
 		return Token::PLAYER_COUNT;
 	}
-	if (command == "!quit") {
+	if (command == commands[2]) {
 		return Token::QUIT;
 	}
 

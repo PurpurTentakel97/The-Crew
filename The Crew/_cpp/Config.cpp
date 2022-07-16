@@ -6,6 +6,20 @@
 #include "Config.h"
 #include "Helper.h"
 
+// Config
+Config::Config(){}
+[[nodiscard]] Config& Config::GetInstance() {
+	static Config config = Config();
+	return config;
+}
+[[nodiscard]] char Config::GetCommandPrefix() const {
+	return commandPrefix;
+}
+[[nodiscard]] const std::array<std::string, 3>& Config::GetCommands() const {
+	return commands;
+}
+
+// PlayerCount
 PlayerCount::PlayerCount()
 	: playerCount(PlayerCountValue::THREE) {}
 [[nodiscard]] PlayerCount& PlayerCount::GetInstance() {
@@ -15,7 +29,7 @@ PlayerCount::PlayerCount()
 [[nodiscard]] PlayerCountValue PlayerCount::GetPlayerCount() const {
 	return playerCount;
 }
-bool PlayerCount::SetPlayerCount(int input) {
+[[nodiscard]] bool PlayerCount::SetPlayerCount(int input) {
 	switch (input) {
 		case 3:
 		case 4:
