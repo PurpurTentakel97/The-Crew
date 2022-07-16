@@ -1,0 +1,37 @@
+//
+// Purpur Tentakel
+// 16.07.2022
+//
+
+#pragma once
+#include <string>
+
+enum class ExtraRules{
+	NO_EMERGENCY_SIGNAL,
+	ALL_TASKS_ONE_CREW_MEMBER,
+	ALL_TASKS_KAPTAIN_OR_COMMUNICATE_IMMEDIATELY,
+	COMMUNICATION_WITH_LESS_TOKEN,
+	SIMPLE_COMMUNICATION,
+	NO_COMMUNICATION,
+	TIME_LIMIT,
+	HARDEST_TASK_FOR_CAPTAIN,
+	CARD_FOR_CHOOCE_COMMUNICATE,
+	COMMUNICATE_TO_THE_SECOND_ROUND,
+	FREE_SELECTION,
+	NOTHING,
+	SIZE
+};
+
+enum class Time {
+	FOUR,
+	THREE_THIRTY,
+	THREE,
+	TWO_THIRTY,
+	TWO,
+	ONE_THIRTY,
+	ONE,
+	SIZE
+};
+
+[[nodiscard]] std::string GetExtraRule();
+[[nodiscard]] std::string GetTime();

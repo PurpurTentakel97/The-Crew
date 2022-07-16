@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClInclude Include="Command\hed\Command.h" />
     <ClInclude Include="Command\hed\Token.h" />
+    <ClInclude Include="DeepSea\hed\DSExtraRules.h" />
     <ClInclude Include="DeepSea\hed\DSCards.h" />
     <ClInclude Include="DeepSea\hed\DSConfig.h" />
     <ClInclude Include="DeepSea\hed\DSParser.h" />
@@ -35,6 +36,7 @@
     <ClCompile Include="DeepSea\cpp\DSConfig.cpp" />
     <ClCompile Include="DeepSea\cpp\DSMain.cpp" />
     <ClCompile Include="DeepSea\cpp\DSParser.cpp" />
+    <ClCompile Include="DeepSea\cpp\DSExtraRules.cpp" />
     <ClCompile Include="Original\cpp\OMain.cpp" />
     <ClCompile Include="_cpp\Config.cpp" />
     <ClCompile Include="_cpp\Helper.cpp" />

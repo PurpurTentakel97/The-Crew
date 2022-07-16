@@ -93,3 +93,6 @@ static void StripString(std::string& input) {
 	input = input.erase(0, input.find_first_not_of(' '));
 	input = input.erase(input.find_last_not_of(' ') + 1, input.size() - 1);
 }
+[[nodiscard]] int GetRandomInt(const int min, const int max) { // TODO !
+	return 0;
+}

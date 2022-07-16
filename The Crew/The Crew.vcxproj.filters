@@ -9,6 +9,7 @@
     <ClInclude Include="DeepSea\hed\DSConfig.h" />
     <ClInclude Include="_hed\Execution.h" />
     <ClInclude Include="DeepSea\hed\DSParser.h" />
+    <ClInclude Include="DeepSea\hed\DSExtraRules.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="_cpp\Config.cpp" />
@@ -21,6 +22,7 @@
     <ClCompile Include="DeepSea\cpp\DSConfig.cpp" />
     <ClCompile Include="DeepSea\cpp\DSMain.cpp" />
     <ClCompile Include="DeepSea\cpp\DSParser.cpp" />
+    <ClCompile Include="DeepSea\cpp\DSExtraRules.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Config\DeepSea\DeepSea.cnfg" />

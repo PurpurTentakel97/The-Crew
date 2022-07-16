@@ -9,6 +9,7 @@
 #include "DSConfig.h"
 #include "DSCards.h"
 #include "DSParser.h"
+#include "DSExtraRules.h"
 
 #include <windows.h>
 
@@ -45,6 +46,7 @@ void ExecuteDeepSea() {
 			continue;
 		}
 		RemoveCardsFromPool(selection);
+		Print(GetExtraRule());
 	}
 	Config::GetInstance().SetProgrammType(ProgrammType::INVALID);
 }
