@@ -23,8 +23,8 @@ DSConfig::DSConfig(){}
 void DSConfig::SetDSConfig() {
 	PlayerCount& playerCount = PlayerCount::GetInstance();
 	playerCount.SetPlayerCountWithInput();
-	cards = ParseCards();
+	SetCards();
 }
-void DSConfig::SetCards(std::vector<Card> newCards) {
-	cards = newCards;
+void DSConfig::SetCards() {
+	cards = ParseCards();
 }

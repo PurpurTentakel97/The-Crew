@@ -12,7 +12,7 @@ public:
 	[[nodiscard]] static DSConfig& GetInstance();
 	[[nodiscard]] std::vector<Card>& GetCards();
 	void SetDSConfig();
-	void SetCards(std::vector<Card> newCards);
+	void SetCards();
 private:
 	std::vector<Card> cards;
 	DSConfig();

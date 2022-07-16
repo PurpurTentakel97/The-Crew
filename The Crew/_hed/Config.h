@@ -6,6 +6,13 @@
 #pragma once
 #include <array>
 #include <string>
+
+enum class ProgrammType {
+	INVALID,
+	ORIGINAL,
+	DEEP_SEE
+};
+
 enum class PlayerCountValue {
 	THREE = 3,
 	FOUR,
@@ -16,10 +23,13 @@ struct Config {
 public:
 	[[nodiscard]] static Config& GetInstance();
 	[[nodiscard]] char GetCommandPrefix() const;
-	[[nodiscard]] const std::array<std::string, 3>& GetCommands() const;
+	[[nodiscard]] const std::array<std::string, 4>& GetCommands() const;
+	[[nodiscard]] ProgrammType GetProgrammType() const;
+	void SetProgrammType(ProgrammType programmType);
 private:
 	char commandPrefix = '!';
-	std::array<std::string,3> commands = { "!commands", "!playercount", "!quit" };
+	ProgrammType programmType;
+	std::array<std::string,4> commands = { "!commands", "!playercount", "!reload", "!quit" };
 	Config();
 	Config(const Config& old) = delete;
 };

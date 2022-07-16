@@ -4,6 +4,7 @@
 //
 
 #include "Helper.h"
+#include "Config.h"
 
 #include "DSConfig.h"
 #include "DSCards.h"
@@ -30,19 +31,20 @@ void ExecuteDeepSea() {
 		bool reloaded = false;
 		while (TryGetCardSet(difficultiyCount, selection)) {
 			if (reloaded) {
-				Print("fatal error setting card set");
+				PrintAwenser("fatal error setting card set");
 				Sleep(2500);
 				exit(0);
 			}
-			Print("\tno selection left -> reload cards");
-			dsConfig.SetCards(ParseCards());
+			PrintAwenser("no selection left -> reload cards");
+			dsConfig.SetCards();
 			reloaded = true;
 		}
 		PrintCardTable(selection);
 		if (!IsValidSelection()) {
-			Print("\tretry");
+			PrintAwenser("retry");
 			continue;
 		}
 		RemoveCardsFromPool(selection);
 	}
+	Config::GetInstance().SetProgrammType(ProgrammType::INVALID);
 }

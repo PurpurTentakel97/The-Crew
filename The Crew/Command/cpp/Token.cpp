@@ -15,6 +15,9 @@
 		return Token::PLAYER_COUNT;
 	}
 	if (command == commands[2]) {
+		return Token::RELOAD;
+	}
+	if (command == commands[3]) {
 		return Token::QUIT;
 	}
 

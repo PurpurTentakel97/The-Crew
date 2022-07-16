@@ -4,12 +4,14 @@
 //
 
 #include "Command.h"
-#include "Token.h"
-#include "Helper.h"
 #include "Config.h"
+#include "Helper.h"
+#include "Token.h"
+#include "DSConfig.h"
 #include <array>
 
 static void PrintCommands();
+static void Reload();
 
 [[nodiscard]] bool HasCommandPrefix(const std::string& command) {
 	const Config& config = Config::GetInstance();
@@ -18,34 +20,46 @@ static void PrintCommands();
 void ExecuteCommand(const std::string& command) {
 	const Token& token = LexToken(command);
 	switch (token) {
-		case (Token::COMMAND): {
+		case Token::COMMAND: 
 			PrintCommands();
 			break;
-		}
-		case (Token::PLAYER_COUNT): {
+		case Token::PLAYER_COUNT: {
 			PlayerCount& playerCount = PlayerCount::GetInstance();
 			playerCount.SetPlayerCountWithInput();
-			Print("\tdone");
+			PrintAwenser("done");
+			PrintAwenser("reload cards");
+			Reload();
 			break;
 		}
-		case (Token::QUIT): {
+		case Token::RELOAD: 
+			Reload();
+			break;
+		case Token::QUIT: 
 			std::exit(EXIT_SUCCESS);
 			break;
-		}
-		case (Token::INVALID): {
-			Print("\tinvalid command");
+		case Token::INVALID: 
+			PrintAwenser("invalid command");
 			break;
-		}
-		default: {
-			Print("\tinvalid command input");
+		default: 
+			PrintAwenser("invalid command input");
 			break;
-		}
 	}
 }
 
 void PrintCommands() {
 	const auto& commands = Config::GetInstance().GetCommands();
 	for (const std::string& command : commands) {
-		Print("\t" + command);
+		PrintAwenser(command);
+	}
+}
+void Reload() {
+	switch (Config::GetInstance().GetProgrammType()) {
+		case ProgrammType::DEEP_SEE:
+			DSConfig::GetInstance().SetCards();
+			PrintAwenser("done");
+			break;
+		default:
+			PrintAwenser("no reload here");
+			break;
 	}
 }

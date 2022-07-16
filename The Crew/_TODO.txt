@@ -3,6 +3,9 @@
 // 16.07.2022
 //
 
-Reload Cards when chance playerCount
-Add Extra rules
-Add multiple Config
+Add index in Cards
+Mayve add remove one color by playerCount 3
+Implement Extra rules
+Implement multiple Config
+
+Implement Original

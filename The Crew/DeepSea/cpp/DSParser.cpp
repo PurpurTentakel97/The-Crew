@@ -47,7 +47,7 @@ std::vector<std::string> LoadConfig() {
 
 	file.open(fileName, std::ios::in);
 	if (!file.is_open()) {
-		Print("Cant open Config");
+		PrintAwenser("Cant open Config");
 		return toReturn;
 	}
 

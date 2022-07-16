@@ -4,22 +4,26 @@
 // C++ 20
 //
 
+#include "Config.h"
 #include "Helper.h"
 #include "Execution.h"
 
 
 static void ExecuteProgramm(int input) {
+	Config& config = Config::GetInstance();
 	switch (static_cast<ProgrammType>(input)) {
 		case (ProgrammType::ORIGINAL): {
+			config.SetProgrammType(ProgrammType::ORIGINAL);
 			ExecuteOriginal();
 			break;
 		}
 		case (ProgrammType::DEEP_SEE): {
+			config.SetProgrammType(ProgrammType::DEEP_SEE);
 			ExecuteDeepSea();
 			break;
 		}
 		default: {
-			Print("Invalid Number");
+			PrintAwenser("Invalid Number");
 			break;
 		}										   
 	}
@@ -28,7 +32,7 @@ static void ExecuteProgramm(int input) {
 int main() {
 	Print("!commands");
 	while (true) {
-		Print("witch game do you play?\n1 -> original\n2 -> Deep Sea");
+		Print("witch game do you play?\n1 -> Original\n2 -> Deep Sea");
 		int input;
 		if (!TryGetIntInputOrExecuteCommand(input)) {
 			continue;

@@ -3,8 +3,8 @@
 // 12.07.2022
 //
 
-#include "Helper.h"
 #include "Command.h"
+#include "Helper.h"
 #include <iostream>
 #include <stdexcept>
 #include <random>
@@ -34,11 +34,11 @@ static void StripString(std::string& input);
 		input = std::stoi(localInput);
 	}
 	catch (std::invalid_argument ex) {
-		Print("\tbad number");
+		PrintAwenser("bad number");
 		return false;
 	}
 	catch (std::out_of_range ex) {
-		Print("\tbad number");
+		PrintAwenser("bad number");
 		return false;
 	}
 
@@ -75,6 +75,16 @@ void Print(const char character, const bool newLine) {
 		return;
 	}
 	std::cout << character;
+}
+
+void PrintAwenser(const std::string& message) {
+	std::cout << "-> " << message << std::endl;
+}
+void PrintAwenser(const int number) {
+	std::cout << "-> " << number << std::endl;
+}
+void PrintAwenser(const char character) {
+	std::cout << "-> " << character << std::endl;
 }
 
 

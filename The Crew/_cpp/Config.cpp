@@ -7,7 +7,8 @@
 #include "Helper.h"
 
 // Config
-Config::Config(){}
+Config::Config()
+	: programmType(ProgrammType::INVALID) {}
 [[nodiscard]] Config& Config::GetInstance() {
 	static Config config = Config();
 	return config;
@@ -15,8 +16,14 @@ Config::Config(){}
 [[nodiscard]] char Config::GetCommandPrefix() const {
 	return commandPrefix;
 }
-[[nodiscard]] const std::array<std::string, 3>& Config::GetCommands() const {
+[[nodiscard]] const std::array<std::string, 4>& Config::GetCommands() const {
 	return commands;
+}
+[[nodiscard]] ProgrammType Config::GetProgrammType() const {
+	return programmType;
+}
+void Config::SetProgrammType(const ProgrammType programmType_) {
+	programmType = programmType_;
 }
 
 // PlayerCount
@@ -37,7 +44,7 @@ PlayerCount::PlayerCount()
 			playerCount = static_cast<PlayerCountValue>(input);
 			return true;
 		default:
-			Print("\tbad player count");
+			PrintAwenser("bad player count");
 			return false;
 	}
 }
