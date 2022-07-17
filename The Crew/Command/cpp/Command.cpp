@@ -24,8 +24,8 @@ void ExecuteCommand(const std::string& command) {
 			PrintCommands();
 			break;
 		case Token::PLAYER_COUNT: {
-			PlayerCount& playerCount = PlayerCount::GetInstance();
-			playerCount.SetPlayerCountWithInput();
+			PlayerCount& m_playerCount = PlayerCount::GetInstance();
+			m_playerCount.SetPlayerCountWithInput();
 			PrintAwenser("done");
 			break;
 		}
@@ -45,8 +45,8 @@ void ExecuteCommand(const std::string& command) {
 }
 
 void PrintCommands() {
-	const auto& commands = Config::GetInstance().GetCommands();
-	for (const std::string& command : commands) {
+	const auto& m_commands = Config::GetInstance().GetCommands();
+	for (const std::string& command : m_commands) {
 		PrintAwenser(command);
 	}
 }

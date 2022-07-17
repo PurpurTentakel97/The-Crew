@@ -16,7 +16,7 @@ public:
 	void SetDSConfig();
 	void SetCards();
 private:
-	std::vector<Card> cards;
+	std::vector<Card> m_cards;
 	DSConfig();
 	DSConfig(const DSConfig& old) = delete;
 };

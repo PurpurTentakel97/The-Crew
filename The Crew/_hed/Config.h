@@ -25,18 +25,18 @@ public:
 	[[nodiscard]] char GetCommandPrefix() const;
 	[[nodiscard]] const std::array<std::string, 4>& GetCommands() const;
 	[[nodiscard]] ProgrammType GetProgrammType() const;
-	void SetProgrammType(ProgrammType programmType);
+	void SetProgrammType(ProgrammType m_programmType);
 private:
-	char commandPrefix = '!';
-	ProgrammType programmType;
-	std::array<std::string,4> commands = { "!commands", "!playercount", "!reload", "!quit" };
+	char m_commandPrefix = '!';
+	ProgrammType m_programmType;
+	std::array<std::string,4> m_commands = { "!commands", "!playercount", "!reload", "!quit" };
 	Config();
 	Config(const Config& old) = delete;
 };
 
 struct PlayerCount {
 private:
-	PlayerCountValue playerCount;
+	PlayerCountValue m_playerCount;
 	PlayerCount();
 	PlayerCount(const PlayerCount& old) = delete;
 public:

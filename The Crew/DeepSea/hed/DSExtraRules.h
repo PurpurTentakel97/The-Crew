@@ -21,7 +21,6 @@ enum class ExtraRules{
 	NOTHING,
 	SIZE
 };
-
 enum class Time {
 	FOUR,
 	THREE_THIRTY,

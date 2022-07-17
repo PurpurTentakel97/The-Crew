@@ -18,13 +18,13 @@ DSConfig::DSConfig(){}
 	return dsConfig;
 }
 [[nodiscard]] std::vector<Card>& DSConfig::GetCards() {
-	return cards;
+	return m_cards;
 }
 void DSConfig::SetDSConfig() {
-	PlayerCount& playerCount = PlayerCount::GetInstance();
-	playerCount.SetPlayerCountWithInput();
+	PlayerCount& m_playerCount = PlayerCount::GetInstance();
+	m_playerCount.SetPlayerCountWithInput();
 	SetCards();
 }
 void DSConfig::SetCards() {
-	cards = ParseCards();
+	m_cards = ParseCards();
 }

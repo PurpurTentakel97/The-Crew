@@ -10,12 +10,12 @@
 
 class Card {
 private:
-	int index;
-	int threePlayerDifficulty;
-	int fourPlayerDifficulty;
-	int fivePlayerDifficulty;
-	std::string description;
-	std::string extraText;
+	int m_index;
+	int m_threePlayerDifficulty;
+	int m_fourPlayerDifficulty;
+	int m_fivePlayerDifficulty;
+	std::string m_description;
+	std::string m_extraText;
 public:
 	Card(const int index, const std::array<int, 3>& difficulties, const std::array<std::string, 2>& text);
 	[[nodiscard]] int GetIndex() const;

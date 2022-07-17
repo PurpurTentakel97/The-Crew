@@ -4,10 +4,8 @@
 //
 
 #include "Helper.h"
-
 #include "DSCards.h"
 #include "DSConfig.h"
-
 #include <array>
 #include <algorithm>
 #include <format>
@@ -25,41 +23,41 @@ struct Hedline {
 
 // Cards
 Card::Card(const int index, const std::array<int, 3>& dificulties, const std::array<std::string, 2>& text)
-	: index(index)
-	, threePlayerDifficulty(dificulties[0])
-	, fourPlayerDifficulty(dificulties[1])
-	, fivePlayerDifficulty(dificulties[2])
-	, description(text[0])
-	, extraText(text[1]) {}
+	: m_index(index)
+	, m_threePlayerDifficulty(dificulties[0])
+	, m_fourPlayerDifficulty(dificulties[1])
+	, m_fivePlayerDifficulty(dificulties[2])
+	, m_description(text[0])
+	, m_extraText(text[1]) {}
 [[nodiscard]] int Card::GetIndex() const {
-	return index;
+	return m_index;
 }
 [[nodiscard]] int Card::GetDifficulty() const {
 	const PlayerCount& playerCount = PlayerCount::GetInstance();
 	switch (playerCount.GetPlayerCount()) {
 	case (PlayerCountValue::THREE): {
-		return threePlayerDifficulty;
+		return m_threePlayerDifficulty;
 	}
 	case (PlayerCountValue::FOUR): {
-		return fourPlayerDifficulty;
+		return m_fourPlayerDifficulty;
 	}
 	case (PlayerCountValue::FIVE): {
-		return fivePlayerDifficulty;
+		return m_fivePlayerDifficulty;
 	}
 	default: {
-		return fourPlayerDifficulty;
+		return m_fourPlayerDifficulty;
 	}
 	}
 }
 [[nodiscard]] std::string Card::GetDesciption() const {
-	return description;
+	return m_description;
 }
 [[nodiscard]] std::string Card::GetExtraText() const {
-	return extraText;
+	return m_extraText;
 }
 [[nodiscard]] std::string Card::ToString() const {
 	return std::format("Schwirigkeit: {} / Aufgabe: {} / Zusatz: {}",
-		GetDifficulty(), description, extraText);
+		GetDifficulty(), m_description, m_extraText);
 }
 
 

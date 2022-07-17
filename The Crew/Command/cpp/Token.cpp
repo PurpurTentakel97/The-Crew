@@ -7,17 +7,17 @@
 #include "Config.h"
 
 [[nodiscard]] Token LexToken(const std::string& command) {
-	const auto& commands = Config::GetInstance().GetCommands();
-	if (command == commands[0]) {
+	const auto& m_commands = Config::GetInstance().GetCommands();
+	if (command == m_commands[0]) {
 		return Token::COMMAND;
 	}
-	if (command == commands[1]) {
+	if (command == m_commands[1]) {
 		return Token::PLAYER_COUNT;
 	}
-	if (command == commands[2]) {
+	if (command == m_commands[2]) {
 		return Token::RELOAD;
 	}
-	if (command == commands[3]) {
+	if (command == m_commands[3]) {
 		return Token::QUIT;
 	}
 

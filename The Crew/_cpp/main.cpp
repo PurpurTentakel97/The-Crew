@@ -4,7 +4,7 @@
 // C++ 20
 //
 
-// Random by coder2k (https://github.com/mgerhold)
+// original Random by coder2k (https://github.com/mgerhold)
 
 #include "Config.h"
 #include "Helper.h"

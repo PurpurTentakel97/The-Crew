@@ -8,33 +8,33 @@
 
 // Config
 Config::Config()
-	: programmType(ProgrammType::INVALID) {}
+	: m_programmType(ProgrammType::INVALID) {}
 [[nodiscard]] Config& Config::GetInstance() {
 	static Config config;
 	return config;
 }
 [[nodiscard]] char Config::GetCommandPrefix() const {
-	return commandPrefix;
+	return m_commandPrefix;
 }
 [[nodiscard]] const std::array<std::string, 4>& Config::GetCommands() const {
-	return commands;
+	return m_commands;
 }
 [[nodiscard]] ProgrammType Config::GetProgrammType() const {
-	return programmType;
+	return m_programmType;
 }
 void Config::SetProgrammType(const ProgrammType programmType_) {
-	programmType = programmType_;
+	m_programmType = programmType_;
 }
 
 // PlayerCount
 PlayerCount::PlayerCount()
-	: playerCount(PlayerCountValue::THREE) {}
+	: m_playerCount(PlayerCountValue::THREE) {}
 [[nodiscard]] PlayerCount& PlayerCount::GetInstance() {
 	static PlayerCount playercount = PlayerCount();
 	return playercount;
 }
 [[nodiscard]] PlayerCountValue PlayerCount::GetPlayerCount() const {
-	return playerCount;
+	return m_playerCount;
 }
 [[nodiscard]] bool PlayerCount::SetPlayerCount(int input) {
 	switch (input) {
@@ -42,7 +42,7 @@ PlayerCount::PlayerCount()
 			PrintAwenser("One of you gets one more card. This card is not played at the end.");
 		case 4:
 		case 5: 
-			playerCount = static_cast<PlayerCountValue>(input);
+			m_playerCount = static_cast<PlayerCountValue>(input);
 			return true;
 		default:
 			PrintAwenser("bad player count");
