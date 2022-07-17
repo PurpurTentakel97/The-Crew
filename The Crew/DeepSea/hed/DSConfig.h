@@ -14,7 +14,7 @@ struct DSConfig {
 public:
 	[[nodiscard]] static DSConfig& GetInstance();
 	[[nodiscard]] std::vector<Card>& GetCards();
-	void SetDSConfig();
+	[[nodiscard]] InputOrCommandType SetDSConfig();
 	void SetCards();
 private:
 	std::vector<Card> m_cards;

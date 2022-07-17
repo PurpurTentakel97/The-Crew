@@ -4,6 +4,7 @@
 //
 
 #include "Config.h"
+#include "Command.h"
 
 #include "DSConfig.h"
 #include "DSCards.h"
@@ -22,10 +23,11 @@ DSConfig::DSConfig(){}
 [[nodiscard]] std::vector<Card>& DSConfig::GetCards() {
 	return m_cards;
 }
-void DSConfig::SetDSConfig() {
-	PlayerCount& m_playerCount = PlayerCount::GetInstance();
-	m_playerCount.SetPlayerCountWithInput();
+[[nodiscard]] InputOrCommandType DSConfig::SetDSConfig() {
+	PlayerCount& playerCount = PlayerCount::GetInstance();
+	InputOrCommandType result =  playerCount.SetPlayerCountWithInput();
 	SetCards();
+	return result;
 }
 void DSConfig::SetCards() {
 	m_cards = ParseCards();

@@ -7,6 +7,7 @@
 // original Random by coder2k (https://github.com/mgerhold)
 
 #include "Config.h"
+#include "Command.h"
 #include "Helper.h"
 #include "Execution.h"
 
@@ -36,9 +37,18 @@ int main() {
 	while (true) {
 		Print("witch game do you play?\n1 -> Original\n2 -> Deep Sea");
 		int input;
-		if (!TryGetIntInputOrExecuteCommand(input)) {
+		InputOrCommandType result = TryGetIntInputOrExecuteCommand(input);
+		if (IsBackCommand(result)) {
+			goto BACK;
+		}
+		if (!IsValidInput(result)) {
 			continue;
 		}
+		/*if (!TryGetIntInputOrExecuteCommand(input)) {
+			continue;
+		}*/
 		ExecuteProgramm(input);
 	}
+BACK:
+	return 0;
 }

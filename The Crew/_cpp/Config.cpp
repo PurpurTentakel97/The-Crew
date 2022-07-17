@@ -49,12 +49,19 @@ PlayerCount::PlayerCount()
 			return false;
 	}
 }
-void PlayerCount::SetPlayerCountWithInput() {
+[[nodiscard]] InputOrCommandType PlayerCount::SetPlayerCountWithInput() {
 	int input = 0;
 	Print("enter player count (3-5)");
-	while (!TryGetIntInputOrExecuteCommand(input)) {}
-	while (!SetPlayerCount(input)) {
-		while (!TryGetIntInputOrExecuteCommand(input)) {}
-	}
+	do {
+		InputOrCommandType result = TryGetIntInputOrExecuteCommand(input);
+		if (IsBackCommand(result)) {
+			return InputOrCommandType::BACK_COMMAND;
+		}
+		if (!IsValidInput(result)) {
+			continue;
+		}
+	} while (!SetPlayerCount(input));
+
+	return InputOrCommandType::VALID_INPUT;
 }
 

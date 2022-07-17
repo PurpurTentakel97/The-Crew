@@ -5,8 +5,11 @@
 
 #pragma once
 
+#include "Command.h"
+
 #include <array>
 #include <string>
+
 
 enum class ProgrammType {
 	INVALID,
@@ -44,11 +47,5 @@ public:
 	[[nodiscard]] static PlayerCount& GetInstance();
 	[[nodiscard]] PlayerCountValue GetPlayerCount() const;
 	[[nodiscard]] bool SetPlayerCount(int input);
-	void SetPlayerCountWithInput();
+	[[nodiscard]] InputOrCommandType SetPlayerCountWithInput();
 };
-
-
-
-
-
-

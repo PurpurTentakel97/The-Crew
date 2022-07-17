@@ -5,10 +5,12 @@
 
 #pragma once
 
+#include "Command.h"
+
 #include <string>
 
-[[nodiscard]] bool TryGetStringInputOrExecuteCommand(std::string& input);
-[[nodiscard]] bool TryGetIntInputOrExecuteCommand(int& input);
+[[nodiscard]] InputOrCommandType TryGetStringInputOrExecuteCommand(std::string& input);
+[[nodiscard]] InputOrCommandType TryGetIntInputOrExecuteCommand(int& input);
 [[nodiscard]] int GetRandomInt(int max);
 
 void Print(const std::string& message, bool newLine = true);

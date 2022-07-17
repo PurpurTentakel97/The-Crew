@@ -12,67 +12,78 @@
 
 #include <array>
 
-static void PrintCommands();
-static void SetPlayerCount();
-static void Reload();
-static void Back();
+[[nodiscard]] static InputOrCommandType PrintCommands();
+[[nodiscard]] static InputOrCommandType SetPlayerCount();
+[[nodiscard]] static InputOrCommandType Reload();
+[[nodiscard]] static InputOrCommandType Back();
 
 [[nodiscard]] bool HasCommandPrefix(const std::string& command) {
 	const Config& config = Config::GetInstance();
 	return !command.empty() && command[0] == config.GetCommandPrefix();
 }
-void ExecuteCommand(const std::string& command) {
+[[nodiscard]] InputOrCommandType ExecuteCommand(const std::string& command) {
 	const Token& token = LexToken(command);
 	switch (token) {
 		case Token::COMMAND: 
-			PrintCommands();
-			break;
-		case Token::PLAYER_COUNT: {
-			SetPlayerCount();
-			break;
-		}
+			return PrintCommands();
+		case Token::PLAYER_COUNT:
+			return SetPlayerCount();
 		case Token::RELOAD: 
-			Reload();
-			break;
+			return Reload();
 		case Token::BACK:
-			Back();
-			break;
+			return Back();
 		case Token::QUIT: 
 			std::exit(EXIT_SUCCESS);
-			break;
 		case Token::INVALID: 
 			PrintAwenser("invalid command");
-			break;
+			return InputOrCommandType::INVALID_COMMAND;
 		default: 
 			PrintAwenser("invalid command input");
-			break;
+			return InputOrCommandType::INVALID_COMMAND;
 	}
 }
 
-void PrintCommands() {
+[[nodiscard]] bool IsValidInput(InputOrCommandType value) {
+	return value == InputOrCommandType::VALID_INPUT;
+}
+[[nodiscard]] bool IsBackCommand(InputOrCommandType value) {
+	return value == InputOrCommandType::BACK_COMMAND;
+}
+
+[[nodiscard]] InputOrCommandType PrintCommands() {
 	const auto& m_commands = Config::GetInstance().GetCommands();
 	for (const std::string& command : m_commands) {
 		PrintAwenser(command);
 	}
+	return InputOrCommandType::EXECUTED_COMMAND;
 }
-void SetPlayerCount() {
+[[nodiscard]] InputOrCommandType SetPlayerCount() {
 	PlayerCount& playerCount = PlayerCount::GetInstance();
-	playerCount.SetPlayerCountWithInput();
+	InputOrCommandType result =  playerCount.SetPlayerCountWithInput();
 	PrintAwenser("done");
+	return result;
 }
-void Reload() {
+[[nodiscard]] InputOrCommandType Reload() {
 	switch (Config::GetInstance().GetProgrammType()) {
 		case ProgrammType::DEEP_SEE:
 			DSConfig::GetInstance().SetCards();
 			PrintAwenser("done");
-			break;
+			return InputOrCommandType::EXECUTED_COMMAND;
 		case ProgrammType::ORIGINAL:
 			PrintAwenser("no reload");
+			return InputOrCommandType::EXECUTED_COMMAND;
 		default:
-			PrintAwenser("no reload here");
-			break;
+			PrintAwenser("!reload not avalable");
+			return InputOrCommandType::INVALID_COMMAND;
 	}
 }
-void Back() {
-	PrintAwenser("TODO");
+[[nodiscard]] InputOrCommandType Back() {
+	switch (Config::GetInstance().GetProgrammType()) {
+		case ProgrammType::ORIGINAL:
+		case ProgrammType::DEEP_SEE:
+			return InputOrCommandType::BACK_COMMAND;
+		default:
+			PrintAwenser("!back not avalable");
+			return InputOrCommandType::INVALID_COMMAND;
+	}
 }

@@ -11,7 +11,6 @@
 #include <stdexcept>
 #include <random>
 
-[[nodiscard]] static bool CommandCheck(std::string& command);
 [[nodiscard]] static std::string ReadInput();
 static void StripString(std::string& input);
 
@@ -23,38 +22,33 @@ static void StripString(std::string& input);
 	return toReturn;
 }
 
-[[nodiscard]] bool TryGetStringInputOrExecuteCommand(std::string& input) {
+[[nodiscard]] InputOrCommandType TryGetStringInputOrExecuteCommand(std::string& input) {
 	input = ReadInput();
-	return !CommandCheck(input);
-}
-[[nodiscard]] bool TryGetIntInputOrExecuteCommand(int& input) {
-	std::string localInput = ReadInput();
-	if (CommandCheck(localInput)) {
-		return false;
+	if (HasCommandPrefix(input)) {
+		return ExecuteCommand(input);
 	}
+	return InputOrCommandType::VALID_INPUT;
+}
+[[nodiscard]] InputOrCommandType TryGetIntInputOrExecuteCommand(int& input) {
+	std::string localInput = ReadInput();
+	if (HasCommandPrefix(localInput)) {
+		return ExecuteCommand(localInput);
+	}
+
 	try {
 		input = std::stoi(localInput);
 	}
 	catch (std::invalid_argument ex) {
 		PrintAwenser("bad number");
-		return false;
+		return InputOrCommandType::INVALID_INPUT;
 	}
 	catch (std::out_of_range ex) {
 		PrintAwenser("bad number");
-		return false;
+		return InputOrCommandType::INVALID_INPUT;
 	}
 
-	return true;
+	return InputOrCommandType::VALID_INPUT;
 }
-
-[[nodiscard]] bool CommandCheck(std::string& command) {
-	if (HasCommandPrefix(command)) {
-		ExecuteCommand(command);
-		return true;
-	}
-	return false;
-}
-
 
 // Output
 void Print(const std::string& message, const bool newLine) {
