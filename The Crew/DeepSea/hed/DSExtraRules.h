@@ -4,6 +4,7 @@
 //
 
 #pragma once
+
 #include <string>
 
 enum class ExtraRules{

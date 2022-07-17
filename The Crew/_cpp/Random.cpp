@@ -5,6 +5,7 @@
 //
 
 #include "Random.h"
+
 #include <chrono>
 
 Random& Random::GetInstance() {

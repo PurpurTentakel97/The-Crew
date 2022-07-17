@@ -4,6 +4,7 @@
 //
 
 #pragma once
+
 #include <string>
 
 [[nodiscard]] bool TryGetStringInputOrExecuteCommand(std::string& input);

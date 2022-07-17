@@ -3,12 +3,15 @@
 // 12.07.2022
 //
 
+#include "Config.h"
+#include "Helper.h"
+
+#include "DSParser.h"
+#include "DSCards.h"
+
 #include <array>
 #include <fstream>
-#include "DSParser.h"
-#include "Config.h"
-#include "DSCards.h"
-#include "Helper.h"
+
 
 const static char delimiter = ';';
 const static std::string fileName = "Config/DeepSea/DeepSeaDefault.cnfg";

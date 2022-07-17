@@ -7,7 +7,9 @@
 #include "Config.h"
 #include "Helper.h"
 #include "Token.h"
+
 #include "DSConfig.h"
+
 #include <array>
 
 static void PrintCommands();

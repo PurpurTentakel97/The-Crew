@@ -3,8 +3,10 @@
 // 16.07.2022
 //
 
-#include "DSExtraRules.h"
 #include "Helper.h"
+
+#include "DSExtraRules.h"
+
 #include <format>
 
 [[nodiscard]] std::string GetExtraRule() {

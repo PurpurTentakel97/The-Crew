@@ -4,6 +4,7 @@
 //
 
 #pragma once
+
 #include <string>
 
 [[nodiscard]] bool HasCommandPrefix(const std::string& command);

@@ -3,10 +3,12 @@
 // 14.07.2022
 //
 
+#include "Config.h"
+
 #include "DSConfig.h"
 #include "DSCards.h"
-#include "Config.h"
 #include "DSParser.h"
+
 #include <vector>
 
 
