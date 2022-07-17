@@ -11,6 +11,7 @@ enum class Token {
 	PLAYER_COUNT, // !playercount
 	QUIT, // !quit
 	RELOAD, // !reload
+	BACK, // !back
 	INVALID,
 };
 

@@ -11,7 +11,9 @@
 #include <array>
 
 static void PrintCommands();
+static void SetPlayerCount();
 static void Reload();
+static void Back();
 
 [[nodiscard]] bool HasCommandPrefix(const std::string& command) {
 	const Config& config = Config::GetInstance();
@@ -24,13 +26,14 @@ void ExecuteCommand(const std::string& command) {
 			PrintCommands();
 			break;
 		case Token::PLAYER_COUNT: {
-			PlayerCount& m_playerCount = PlayerCount::GetInstance();
-			m_playerCount.SetPlayerCountWithInput();
-			PrintAwenser("done");
+			SetPlayerCount();
 			break;
 		}
 		case Token::RELOAD: 
 			Reload();
+			break;
+		case Token::BACK:
+			Back();
 			break;
 		case Token::QUIT: 
 			std::exit(EXIT_SUCCESS);
@@ -50,14 +53,24 @@ void PrintCommands() {
 		PrintAwenser(command);
 	}
 }
+void SetPlayerCount() {
+	PlayerCount& playerCount = PlayerCount::GetInstance();
+	playerCount.SetPlayerCountWithInput();
+	PrintAwenser("done");
+}
 void Reload() {
 	switch (Config::GetInstance().GetProgrammType()) {
 		case ProgrammType::DEEP_SEE:
 			DSConfig::GetInstance().SetCards();
 			PrintAwenser("done");
 			break;
+		case ProgrammType::ORIGINAL:
+			PrintAwenser("no reload");
 		default:
 			PrintAwenser("no reload here");
 			break;
 	}
+}
+void Back() {
+	PrintAwenser("TODO");
 }

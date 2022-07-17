@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClInclude Include="Command\hed\Command.h" />
     <ClInclude Include="Command\hed\Token.h" />
+    <ClInclude Include="DeepSea\hed\DCSMain.h" />
     <ClInclude Include="DeepSea\hed\DSExtraRules.h" />
     <ClInclude Include="DeepSea\hed\DSCards.h" />
     <ClInclude Include="DeepSea\hed\DSConfig.h" />

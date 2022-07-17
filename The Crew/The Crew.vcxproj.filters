@@ -11,6 +11,7 @@
     <ClInclude Include="DeepSea\hed\DSParser.h" />
     <ClInclude Include="DeepSea\hed\DSExtraRules.h" />
     <ClInclude Include="_hed\Random.h" />
+    <ClInclude Include="DeepSea\hed\DCSMain.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="_cpp\Config.cpp" />

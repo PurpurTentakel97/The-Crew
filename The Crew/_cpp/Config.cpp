@@ -16,7 +16,7 @@ Config::Config()
 [[nodiscard]] char Config::GetCommandPrefix() const {
 	return m_commandPrefix;
 }
-[[nodiscard]] const std::array<std::string, 4>& Config::GetCommands() const {
+[[nodiscard]] const std::array<std::string, 5>& Config::GetCommands() const {
 	return m_commands;
 }
 [[nodiscard]] ProgrammType Config::GetProgrammType() const {
