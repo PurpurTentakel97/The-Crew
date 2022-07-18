@@ -26,7 +26,7 @@ static void ExecuteProgramm(int input) {
 			break;
 		}
 		default: {
-			PrintAwenser("Invalid Number");
+			PrintAnswer("Invalid Number");
 			break;
 		}										   
 	}
@@ -44,9 +44,6 @@ int main() {
 		if (!IsValidInput(result)) {
 			continue;
 		}
-		/*if (!TryGetIntInputOrExecuteCommand(input)) {
-			continue;
-		}*/
 		ExecuteProgramm(input);
 	}
 BACK:

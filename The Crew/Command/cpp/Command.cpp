@@ -35,10 +35,10 @@
 		case Token::QUIT: 
 			std::exit(EXIT_SUCCESS);
 		case Token::INVALID: 
-			PrintAwenser("invalid command");
+			PrintAnswer("invalid command");
 			return InputOrCommandType::INVALID_COMMAND;
 		default: 
-			PrintAwenser("invalid command input");
+			PrintAnswer("invalid command input");
 			return InputOrCommandType::INVALID_COMMAND;
 	}
 }
@@ -53,27 +53,27 @@
 [[nodiscard]] InputOrCommandType PrintCommands() {
 	const auto& m_commands = Config::GetInstance().GetCommands();
 	for (const std::string& command : m_commands) {
-		PrintAwenser(command);
+		PrintAnswer(command);
 	}
 	return InputOrCommandType::EXECUTED_COMMAND;
 }
 [[nodiscard]] InputOrCommandType SetPlayerCount() {
 	PlayerCount& playerCount = PlayerCount::GetInstance();
 	InputOrCommandType result =  playerCount.SetPlayerCountWithInput();
-	PrintAwenser("done");
+	PrintAnswer("done");
 	return result;
 }
 [[nodiscard]] InputOrCommandType Reload() {
 	switch (Config::GetInstance().GetProgrammType()) {
 		case ProgrammType::DEEP_SEE:
 			DSConfig::GetInstance().SetCards();
-			PrintAwenser("done");
+			PrintAnswer("done");
 			return InputOrCommandType::EXECUTED_COMMAND;
 		case ProgrammType::ORIGINAL:
-			PrintAwenser("no reload");
+			PrintAnswer("no reload");
 			return InputOrCommandType::EXECUTED_COMMAND;
 		default:
-			PrintAwenser("!reload not avalable");
+			PrintAnswer("!reload not avalable");
 			return InputOrCommandType::INVALID_COMMAND;
 	}
 }
@@ -83,7 +83,7 @@
 		case ProgrammType::DEEP_SEE:
 			return InputOrCommandType::BACK_COMMAND;
 		default:
-			PrintAwenser("!back not avalable");
+			PrintAnswer("!back not avalable");
 			return InputOrCommandType::INVALID_COMMAND;
 	}
 }

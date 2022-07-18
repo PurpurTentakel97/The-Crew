@@ -29,6 +29,15 @@ static void StripString(std::string& input);
 	}
 	return InputOrCommandType::VALID_INPUT;
 }
+[[nodiscard]] InputOrCommandType TryGetBoolInputOrExecuteCommand(bool& input, const std::string message) {
+	Print(message + " (1 = yes)");
+	std::string localInput = ReadInput();
+	if (HasCommandPrefix(localInput)) {
+		return ExecuteCommand(localInput);
+	}
+	input = localInput == "1";
+	return InputOrCommandType::VALID_INPUT;
+}
 [[nodiscard]] InputOrCommandType TryGetIntInputOrExecuteCommand(int& input) {
 	std::string localInput = ReadInput();
 	if (HasCommandPrefix(localInput)) {
@@ -39,11 +48,11 @@ static void StripString(std::string& input);
 		input = std::stoi(localInput);
 	}
 	catch (std::invalid_argument ex) {
-		PrintAwenser("bad number");
+		PrintAnswer("bad number");
 		return InputOrCommandType::INVALID_INPUT;
 	}
 	catch (std::out_of_range ex) {
-		PrintAwenser("bad number");
+		PrintAnswer("bad number");
 		return InputOrCommandType::INVALID_INPUT;
 	}
 
@@ -73,13 +82,13 @@ void Print(const char character, const bool newLine) {
 	std::cout << character;
 }
 
-void PrintAwenser(const std::string& message) {
+void PrintAnswer(const std::string& message) {
 	std::cout << "-> " << message << std::endl;
 }
-void PrintAwenser(const int number) {
+void PrintAnswer(const int number) {
 	std::cout << "-> " << number << std::endl;
 }
-void PrintAwenser(const char character) {
+void PrintAnswer(const char character) {
 	std::cout << "-> " << character << std::endl;
 }
 

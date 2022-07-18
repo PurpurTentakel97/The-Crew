@@ -58,11 +58,11 @@ void ExecuteDeepSea() {
 		bool reloaded = false;
 		while (TryGetCardSet(difficultiyCount, selection)) {
 			if (reloaded) {
-				PrintAwenser("fatal error setting card set");
+				PrintAnswer("fatal error setting card set");
 				Sleep(2500);
 				exit(0);
 			}
-			PrintAwenser("no selection left -> reload cards");
+			PrintAnswer("no selection left -> reload cards");
 			dsConfig.SetCards();
 			reloaded = true;
 		}
@@ -72,7 +72,7 @@ void ExecuteDeepSea() {
 			goto BACK;
 		}
 		if (!IsValidInput(result)) {
-			PrintAwenser("retry");
+			PrintAnswer("retry");
 			goto RETRY;
 		}
 		RemoveCardsFromPool(selection);

@@ -1,0 +1,10 @@
+2;3;3;2 Ich gewinne einen Stich, dessen Kartenwerte alle kleiner sind als 7.;U-Boote sind im Stich nicht erlaubt.;
+4;3;3;2 Ich eroeffne keinen Stich mit rosa, gelb oder blau.;;
+2;3;3;2 Ich gewinne gleich viele gruene wie gelbe Karten in einem Stich.;0 Karten gruen/gelb sind nicht erlaubt.;
+2;3;3;2 Ich gewinne die blaue 1,2 und 3.;;
+1;1;1;2 Ich gewinne keine bunte 9.;;
+3;4;5;2 Ich gewinne mit einer bunten 2 einen Stich.;;
+4;3;3;2 Ich gewinne X Stiche.;Notiere deine Vorhersage aber halte die geheim.;
+1;1;1;2 Ich gewinne mehr pinke als gruene Karten.;0 gruene Karten sind erlaubt.;
+3;4;5;2 Ich gewinne alle bunten 3.;;
+3;4;4;2 Ich gewinne genau 2 blaue Karten.;;

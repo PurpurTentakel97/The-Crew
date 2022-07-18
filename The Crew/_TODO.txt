@@ -3,9 +3,6 @@
 // 16.07.2022
 //
 
-Implement multiple Config
-Add !back command
-
 Implement Original
 
 https://www.youtube.com/watch?v=tbEH00fheX0&list=PL3kb_jqZh5ZuQOMY3BXAq9c3FbbcqN4vE
