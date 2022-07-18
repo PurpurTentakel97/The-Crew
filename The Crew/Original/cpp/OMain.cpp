@@ -7,6 +7,7 @@
 #include "Command.h"
 #include "Helper.h"
 #include "OCard.h"
+#include "OCardExtention.h"
 
 
 void ExecuteOriginal() {
@@ -26,9 +27,13 @@ void ExecuteOriginal() {
 			}
 			PrintAnswer("invalid card count (1-36)");
 		}
-		std::vector<OCard> cards = GenerateCards(cardCount);
+		const std::vector<OCard> cards = GenerateCards(cardCount);
 		for (const auto& card : cards) {
 			Print(card.ToString());
+		}
+		const std::vector<CardExtentions> extentions = GenerateCardExtentions(cardCount);
+		for (const auto& extention : extentions) {
+			Print(CardExtentionsToString(extention));
 		}
 	}
 BACK:

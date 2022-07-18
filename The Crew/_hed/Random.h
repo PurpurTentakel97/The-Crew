@@ -1,6 +1,6 @@
 //
 // Purpur Tentakel
-// original by coder2k (https://github.com/mgerhold)
+// original by coder2k (https://gist.github.com/mgerhold/353e39da27ae9b22c614bc264c8a3d18)
 // 16.07.2022
 //
 

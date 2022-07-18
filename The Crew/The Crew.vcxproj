@@ -26,6 +26,7 @@
     <ClInclude Include="DeepSea\hed\DSConfig.h" />
     <ClInclude Include="DeepSea\hed\DSParser.h" />
     <ClInclude Include="Original\hed\OCard.h" />
+    <ClInclude Include="Original\hed\OCardExtention.h" />
     <ClInclude Include="_hed\Config.h" />
     <ClInclude Include="_hed\Execution.h" />
     <ClInclude Include="_hed\Helper.h" />
@@ -40,6 +41,7 @@
     <ClCompile Include="DeepSea\cpp\DSParser.cpp" />
     <ClCompile Include="DeepSea\cpp\DSExtraRules.cpp" />
     <ClCompile Include="Original\cpp\OCard.cpp" />
+    <ClCompile Include="Original\cpp\OCardExtention.cpp" />
     <ClCompile Include="Original\cpp\OMain.cpp" />
     <ClCompile Include="_cpp\Config.cpp" />
     <ClCompile Include="_cpp\Helper.cpp" />

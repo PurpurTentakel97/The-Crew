@@ -6,6 +6,7 @@
 #include "Random.h"
 #include "OCard.h"
 #include <format>
+#include <stdexcept>
 
 // Card Color
 [[nodiscard]] std::string CardColorToString(const CardColor cardColor) {
@@ -19,7 +20,7 @@
 		case CardColor::YELLOW:
 			return "yellow";
 		default:
-			return "non existing color";
+			throw std::runtime_error("Invalid Card");
 	}
 }
 
@@ -47,14 +48,14 @@ bool operator== (const OCard& first, const OCard& second) {
 [[nodiscard]] std::vector<OCard> GenerateCards(const int count) {
 	std::vector<OCard> toReturn;
 	Random& random = Random::GetInstance();
-	for (int i = 0; i < count; ++i) {
+	for (int i = 0; i < count;) {
 		int randomNumber = static_cast<int>(random.random(9) + 1);
 		CardColor randomColor = static_cast<CardColor>(static_cast<int>(random.random(4)));
 		if (DoesCardExists(toReturn, randomColor, randomNumber)) {
-			--i;
 			continue;
 		}
 		toReturn.emplace_back(randomColor, randomNumber);
+		++i;
 	}
 	return toReturn;
 }
