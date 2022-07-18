@@ -20,7 +20,7 @@ DSConfig::DSConfig(){}
 	static DSConfig dsConfig;
 	return dsConfig;
 }
-[[nodiscard]] std::vector<Card>& DSConfig::GetCards() {
+[[nodiscard]] std::vector<DSCard>& DSConfig::GetCards() {
 	return m_cards;
 }
 [[nodiscard]] InputOrCommandType DSConfig::SetDSConfig() {

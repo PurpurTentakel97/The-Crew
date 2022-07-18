@@ -54,7 +54,7 @@ void ExecuteDeepSea() {
 			}
 		}
 		RETRY:
-		std::vector<Card> selection;
+		std::vector<DSCard> selection;
 		bool reloaded = false;
 		while (TryGetCardSet(difficultiyCount, selection)) {
 			if (reloaded) {

@@ -13,11 +13,11 @@
 struct DSConfig {
 public:
 	[[nodiscard]] static DSConfig& GetInstance();
-	[[nodiscard]] std::vector<Card>& GetCards();
+	[[nodiscard]] std::vector<DSCard>& GetCards();
 	[[nodiscard]] InputOrCommandType SetDSConfig();
 	void SetCards();
 private:
-	std::vector<Card> m_cards;
+	std::vector<DSCard> m_cards;
 	DSConfig();
 	DSConfig(const DSConfig& old) = delete;
 };

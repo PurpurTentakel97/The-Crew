@@ -4,5 +4,11 @@
 //
 
 Implement Original
+extra rules
+- communication
+- SOS Signal
+- commander distributes tasks
+- specific player last tick
+- number auf tick
 
 https://www.youtube.com/watch?v=tbEH00fheX0&list=PL3kb_jqZh5ZuQOMY3BXAq9c3FbbcqN4vE

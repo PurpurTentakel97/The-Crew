@@ -14,4 +14,4 @@ struct FileConfig {
 	constexpr static char delimiter = ';';
 };
 
-[[nodiscard]] std::vector<Card> ParseCards();
+[[nodiscard]] std::vector<DSCard> ParseCards();

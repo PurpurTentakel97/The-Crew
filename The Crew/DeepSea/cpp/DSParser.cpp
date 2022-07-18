@@ -16,7 +16,7 @@
 [[nodiscard]] static std::vector<std::string> LoadAllConfig(bool loadAll);
 static void LoadSingleConfig(auto fileName, std::vector<std::string>& toReturn);
 
-[[nodiscard]] std::vector<Card> ParseCards() {
+[[nodiscard]] std::vector<DSCard> ParseCards() {
 	bool loadAll;
 	do {
 		InputOrCommandType result = TryGetBoolInputOrExecuteCommand(loadAll, "load complete config?");
@@ -29,7 +29,7 @@ static void LoadSingleConfig(auto fileName, std::vector<std::string>& toReturn);
 	} while (true);
 
 	const std::vector<std::string> input = LoadAllConfig(loadAll);
-	std::vector<Card> cards;
+	std::vector<DSCard> cards;
 	cards.reserve(input.size());
 	int index = 0;
 	for (const std::string& entry : input) {
