@@ -7,7 +7,7 @@
 
 #include <string>
 
-enum class ExtraRules{
+enum class DSExtraRules{
 	NO_EMERGENCY_SIGNAL,
 	ALL_TASKS_ONE_CREW_MEMBER,
 	ALL_TASKS_KAPTAIN_OR_COMMUNICATE_IMMEDIATELY,

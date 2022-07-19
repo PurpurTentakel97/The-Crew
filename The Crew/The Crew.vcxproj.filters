@@ -13,6 +13,7 @@
     <ClInclude Include="_hed\Random.h" />
     <ClInclude Include="Original\hed\OCard.h" />
     <ClInclude Include="Original\hed\OCardExtention.h" />
+    <ClInclude Include="Original\hed\OExtraRules.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="_cpp\Config.cpp" />
@@ -29,6 +30,7 @@
     <ClCompile Include="_cpp\Random.cpp" />
     <ClCompile Include="Original\cpp\OCard.cpp" />
     <ClCompile Include="Original\cpp\OCardExtention.cpp" />
+    <ClCompile Include="Original\cpp\OExtraRules.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Config\DeepSea\DeepSea.cnfg" />

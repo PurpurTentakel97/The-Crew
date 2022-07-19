@@ -8,6 +8,7 @@
 #include "Helper.h"
 #include "OCard.h"
 #include "OCardExtention.h"
+#include "OExtraRules.h"
 
 
 void ExecuteOriginal() {
@@ -35,6 +36,7 @@ void ExecuteOriginal() {
 		for (const auto& extention : extentions) {
 			Print(CardExtentionsToString(extention));
 		}
+		PrintAnswer(GetOExtraRule());
 	}
 BACK:
 	Config::GetInstance().SetProgrammType(ProgrammType::INVALID);
